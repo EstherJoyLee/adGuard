@@ -67,11 +67,23 @@
 - event size cap
 - error/drop health counters
 - guard self duration
+- schema 4 신규 writer와 legacy schema 3 원본 보존 (Design §9.3, 승인 D1)
+- 공통 읽기 변환 계층 및 기존 LogReader/RiskCorrelationAnalyzer/tools/report 호환 연결
+- 필드 매핑표: 타입/단위/상한/nullable, 원래 schema와 의미, 광고 증적/HMAC/analytics 보존 위치
+- 신규 request 단일 기록 및 event_id 유지; health record는 별도 종류로 처리
+
+범위 경계:
+- 기존 조회/집계가 신규 event를 읽기 위한 최소 호환은 Phase 1에 포함한다.
+- Phase 2 identity, Phase 3 behavior/risk, Phase 4 bot 기능은 선행하지 않는다. 미수집 값은 null이며 관측값으로 추정하지 않는다.
+- Phase 5 forensic UI와 Phase 6 export 구현은 해당 Phase에 남긴다.
 
 검수:
 - 광고 없는 페이지도 event/counter 반영
 - storage read-only / disk-write failure simulation에서 page 200 유지
 - sensitive header 제외 테스트
+- schema 3/4 단독·혼합 로그의 기존 조회/집계 누락 및 중복 0
+- legacy 원본/광고 증적 보존, 미수집 값과 실제 0/false 구분, legacy verified의 FCrDNS PASS 승격 금지
+- health/malformed/미지원 schema 분리와 bounded 오류 처리; event 크기 상한
 
 ---
 

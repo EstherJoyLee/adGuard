@@ -177,6 +177,8 @@ PHP 계측은 fixture 설정/HTML 문자열 준비 뒤부터 boot/include/출력
 
 **DECISION_NEEDED (Phase 1 전):** 현재 schema 3과 설계 예시 2의 version/legacy reader 호환 전략. 제품 v2라는 이름만으로 schema 번호를 임의로 낮추지 않는다. **후속 정책 단계 전:** storage/provider 장애 시 광고 fail_closed와 v2 fail-open의 적용 범위. 이번 Phase 0은 관측만 했으며 설계를 변경하지 않았다.
 
+> 후속 결정 D1 (2026-09-11 사용자 승인): 위 schema 미결 항목은 해소됐다. 신규 event는 schema 4, 기존 schema 3은 원형 보존하며 공통 읽기 변환을 적용한다. 현재 기준은 DESIGN §9.3 및 IMPLEMENTATION_STATE를 따른다. Phase 1 파일 범위에는 공통 변환 계층과 `src/LogReader.php`, `src/RiskCorrelationAnalyzer.php`, `tools/report.php`의 최소 호환 및 관련 fixture가 추가된다. 아래 목록과 Phase 0 측정 결과는 당시 baseline 기록으로 보존한다. 광고 fail_closed 정책 항목은 이번 결정 대상이 아니다.
+
 Phase 1에 예상되는 정확한 파일 범위:
 
 - 신규: `src/Telemetry/RequestTelemetry.php`, `src/Telemetry/ResponseTelemetry.php`, `src/Telemetry/TelemetryEvent.php`, `src/Storage/LocalEventStore.php`, `tests/telemetry-foundation-test.php`.

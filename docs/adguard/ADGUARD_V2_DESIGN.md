@@ -1,6 +1,7 @@
 # AdGuard v2 설계 문서
 
 - 작성일: 2026-09-10
+- 개정일: 2026-09-11 — 사용자 승인 D1: 신규 event schema 4 및 legacy 읽기 호환 계약 (§9.3).
 - 대상: 현재 1차 `adguard` PHP 모듈의 2차 재설계
 - 상태: 구현 기준(Source of Truth)
 - 호환 목표: 기존 프로젝트 동작 보존, PHP 5.6+ 문법 호환 유지
@@ -430,7 +431,7 @@ Central Collector 전용 bounded export endpoint.
 
 ```json
 {
-  "schema_version": 2,
+  "schema_version": 4,
   "event_id": "uuid-or-safe-id",
   "project_id": "project_x",
   "request_id": "req_x",
@@ -531,6 +532,36 @@ Central Collector 전용 bounded export endpoint.
 - value 저장 금지
 
 명시적으로 안전하다고 승인한 query key만 별도 allowlist로 값을 수집할 수 있다.
+
+## 9.3 Schema version 및 legacy 호환 계약 — D1
+
+2026-09-11 사용자 승인. 제품명 AdGuard v2와 저장 형식의 schema version은 독립적이다.
+기존 decision JSONL이 이미 schema 3이므로, 위 중첩 event 구조의 신규 writer는 **schema 4**를 사용한다.
+제공 설계의 예시 번호 2를 4로 정정하며, 보안 원칙과 단계별 구현 순서는 유지한다.
+
+### 저장과 식별
+
+- 기존 schema 3 파일은 원형 보존한다. 일괄 재작성, 번호만 변경, schema 3에 호환되지 않는 구조 덮어쓰기를 금지한다.
+- Phase 1 전환 이후 신규 request event는 schema 4로 한 번만 기록한다. 동일 요청을 schema 3/4로 이중 기록하거나 counter를 중복 증가시키지 않는다.
+- `event_id`는 이벤트 생성 시 한 번 부여하고 저장/조회/향후 export 및 재시도에서 유지한다. `request_id`, 제품/agent version, rule version과 혼동하지 않는다.
+- 기존 logger health schema 1은 별도 record 종류다. reader는 record 종류와 schema를 함께 구분하며 health를 request 통계로 집계하지 않는다.
+
+### 읽기 호환과 증적
+
+- 하나의 공통 읽기 변환 계층에서 legacy schema 3과 신규 schema 4를 처리한다. 기존에 지원하던 구형/버전 없는 fixture는 실제 형식과 테스트를 확인하여 지원 범위를 명시한다. 확인되지 않은 schema를 추측해서 해석하지 않는다.
+- 변환은 조회용이며 원본 파일과 원래 schema/필드의 출처를 보존한다. legacy event를 완전한 schema 4 관측 결과로 표시하지 않는다.
+- Phase 1에서 `src/LogReader.php`, `src/RiskCorrelationAnalyzer.php`, `tools/report.php`의 기존 조회/집계에 공통 변환 계층을 연결한다. `timestamp`와 `occurred_at_utc` 등 구조 차이로 신규 event가 누락되지 않도록 한다.
+- Phase 1 구현 전에 필드별 매핑표와 타입/단위/길이 상한/nullable 규칙을 고정하고 fixture로 검증한다. 기존 `ad_delivery`, 광고 정책 사유, HMAC, route/analytics metadata 등 허용된 증적의 위치도 명시하여 유실을 막는다. 무제한 legacy 객체나 generic header/body dump를 추가하지 않는다.
+- 기존 risk 등급/action은 출처와 원래 의미를 보존한다. 이름이 비슷하다는 이유로 새 정책과 동등하다고 간주하거나 호환 변환 중 정책을 재평가하지 않는다.
+- 원본에 없는 response 시간/status, peer IP, proxy chain, verification 결과는 만들어내지 않는다. 미수집/미구현 값은 `null`로 표현하며 실제 관측된 `0`/`false`/빈 목록과 구별한다. 누락된 status를 200, 점수를 0, 검증을 PASS로 기본 처리하지 않는다.
+- 기존 crawler `verified`는 FCrDNS PASS 또는 strict 자동 allowlist 자격으로 승격하지 않는다. claim 검사 자체를 하지 않은 경우 `NOT_CLAIMED`로 단정하지 않는다. 실제 검증 장애의 UNKNOWN/PENDING 의미는 §10~11을 따른다.
+- malformed/지원하지 않는 schema는 bounded하게 건너뛰고 오류 수를 관측 가능하게 한다. request로 오집계하거나 reader 전체를 중단하지 않으며 health 기록 실패가 재귀 로깅/무제한 대기를 만들지 않아야 한다.
+
+### 단계별 확장과 검수
+
+- Phase 1은 schema 4 기반과 최소 읽기 호환만 구현한다. Phase 2 identity, Phase 3 behavior/risk, Phase 4 bot에서 실제 수집 값을 채운다. Phase 5 forensic UI와 Phase 6 중앙 export를 선행 구현하지 않는다.
+- 필드 의미/타입/필수 여부를 호환되지 않게 변경할 때는 새 schema version과 migration 계약이 필요하다. 선택 필드 추가는 기존 reader 호환과 allowlist/budget을 검증한 뒤 가능하며 기존 필드 의미를 재사용하지 않는다.
+- 필수 fixture: schema 3 단독, schema 4 단독, 혼합 로그, 별도 health, malformed/미지원 버전, 미수집 값, legacy crawler verified, 기존 광고 증적. 조회/집계 누락 및 중복 0, 원본 보존, 민감정보 제외, event 크기 상한을 검증한다.
 
 ---
 

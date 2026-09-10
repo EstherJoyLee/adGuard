@@ -165,10 +165,21 @@ AdSense 존재 여부와 무관하게 PHP 요청에서
 - ResponseTelemetry
 - normalized TelemetryEvent
 - LocalEventStore
-- schema_version
+- schema_version = 4 (제품 v2와 독립; DESIGN §9.3의 승인 D1 준수)
 - event_id/request_id
 - guard_duration_ms
 - telemetry write health metrics
+- legacy schema 3 원본 보존 및 schema 3/4 공통 읽기 변환 계층
+- 기존 src/LogReader.php, src/RiskCorrelationAnalyzer.php, tools/report.php의 최소 조회/집계 호환
+
+schema 계약:
+- 구현 전에 DESIGN §9.3에 맞는 필드 매핑표와 타입/단위/상한/nullable 규칙을 고정해.
+- 허용된 기존 광고 증적/HMAC/analytics metadata와 원래 schema/판정 의미를 보존해.
+- 신규 request는 schema 4로 한 번만 기록하고 event_id를 재생성하거나 counter를 중복 증가시키지 마.
+- 기존 파일을 일괄 변환하거나 schema 3/4로 이중 기록하지 마. health schema 1은 별도 record 종류야.
+- 미수집 값은 null로 남겨. 0/200/PASS를 추정하거나 기존 crawler verified를 FCrDNS PASS로 승격하지 마.
+- schema 3/4 단독·혼합 로그, health, malformed/미지원 버전, 미수집 값, legacy verified와 광고 증적 fixture를 검증해.
+- 최소 읽기 호환만 이 Phase에 포함하고 Phase 5 forensic UI와 Phase 6 export는 선행하지 마.
 
 중요:
 기존 Guard의 광고 제어 책임과 telemetry 수집 책임을 분리해.
