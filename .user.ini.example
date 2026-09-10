@@ -1,0 +1,4 @@
+; Replace the placeholder with the absolute server path, then place this
+; directive in the site's active .user.ini (PHP-FPM/FastCGI) or equivalent
+; pool/vhost configuration. Do not copy this example unchanged.
+auto_prepend_file=/absolute/path/to/site/ad-guard/auto-prepend.php

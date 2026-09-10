@@ -1,0 +1,61 @@
+<?php
+/**
+ * Optional risk-engine configuration override.
+ *
+ * The engine works with zero configuration -- every value here has a
+ * built-in default (see ../engine/src/Config.php). To change something,
+ * copy this file to "engine.php" in this same directory:
+ *
+ *     cp adguard/config/engine.php.example adguard/config/engine.php
+ *
+ * then edit only the values you want to change. Anything you omit keeps
+ * its built-in default -- you do not need to repeat the whole structure.
+ *
+ * The filename matters: RiskEngine\Config::load() reads exactly
+ * adguard/config/engine.php (or whatever the RISK_ENGINE_CONFIG
+ * environment variable points at). A file saved under any other name is
+ * silently ignored, so a threshold you "changed" would never take effect.
+ *
+ * Loaded with `require`, so it must return a PHP array.
+ */
+return array(
+    // Forwarded headers are ignored unless REMOTE_ADDR matches one of these
+    // explicit proxy IPs/CIDRs. Keep empty for direct hosting.
+    // 'identity' => array(
+    //     'trusted_proxies' => array('127.0.0.1', '10.0.0.0/8'),
+    // ),
+
+    // 'storage' => array(
+    //     // Move this outside your web root if your host allows it --
+    //     // more reliable than a same-directory .htaccess guard alone.
+    //     'path' => __DIR__ . '/../storage',
+    // ),
+
+    // 'signals' => array(
+    //     'user_agent' => array('enabled' => true, 'weight' => 1.0),
+    //     'rate_limit' => array(
+    //         'enabled' => true,
+    //         'weight' => 1.0,
+    //         'windows' => array(10 => 40, 300 => 400), // seconds => allowed requests
+    //     ),
+    //     'visitor_rate' => array(
+    //         'enabled' => true,
+    //         'weight' => 1.0,
+    //         'windows' => array(10 => 8, 60 => 30, 600 => 120),
+    //         'cookie_name' => '__rek_id',
+    //     ),
+    //     'session_churn' => array(
+    //         'enabled' => true,
+    //         'weight' => 0.6,
+    //         'window_seconds' => 600,
+    //         'threshold' => 15,
+    //         'cookie_name' => '__rek_id',
+    //     ),
+    // ),
+
+    // 'thresholds' => array(
+    //     'elevated'   => 25,
+    //     'suspicious' => 50,
+    //     'severe'     => 75,
+    // ),
+);
