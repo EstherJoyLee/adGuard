@@ -1,0 +1,549 @@
+{
+  "generated_at_utc": "2026-09-10T08:20:45.0166771Z",
+  "php_version": "PHP 8.5.5 (cli) (built: Apr  7 2026 19:23:32) (ZTS Visual C++ 2022 x64)\r\nCopyright (c) The PHP Group\r\nBuilt by The PHP Group\r\nZend Engine v4.5.5, Copyright (c) Zend Technologies\r\n    with Zend OPcache v8.5.5, Copyright (c), by Zend Technologies",
+  "pass": 22,
+  "fail": 0,
+  "skip": 1,
+  "checks": [
+    {
+      "name": "engine/tests/combined-verdict-test.php",
+      "command": "php engine/tests/combined-verdict-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 84.5937,
+      "output": "ok:   scenario 1 (normal traffic) -> NORMAL\r\nok:   scenario 2 (one moderate signal only) -> ELEVATED\r\nok:   scenario 3 (burst + churn + bad UA) -> SEVERE\r\nok:   scenario 3 -> all three signals present in reasons\r\nok:   a throwing signal degrades to neutral, engine does not crash\r\nok:   the degraded result reason mentions the failure\r\n\r\nAll combined-verdict scenarios passed.\r\n"
+    },
+    {
+      "name": "engine/tests/concurrency-storage-test.php",
+      "command": "php engine/tests/concurrency-storage-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 1121.916,
+      "output": "ok:   all 8 worker processes started\r\nok:   every worker completed without error output\r\nok:   every worker printed \"done\"\r\nok:   final value is a real, non-negative, sane integer (no corruption)\r\nok:   final count never exceeds the expected total (no double-count)\r\nok:   loss under heavy real contention stays bounded (>= 90% of increments survived)\r\nok:   withLock() on totally unwritable storage degrades gracefully (no fatal)\r\nok:   base storage dir gets an .htaccess guard\r\nok:   base storage dir gets an index.html guard\r\nok:   base storage dir gets an IIS web.config guard\r\nok:   gc() removed exactly the one stale entry\r\nok:   stale entry is actually gone after gc()\r\nok:   fresh entry survives gc()\r\n\r\nAll storage hardening tests passed.\r\n"
+    },
+    {
+      "name": "engine/tests/cookie-header-http-test.php",
+      "command": "php engine/tests/cookie-header-http-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 592.3574,
+      "output": "ok:   dev server responded\r\nok:   response includes a Set-Cookie header\r\nok:   Set-Cookie names the configured cookie\r\nok:   Set-Cookie is HttpOnly\r\nok:   Set-Cookie sets SameSite=Lax\r\nok:   endpoint returned a well-formed signal result\r\nok:   first request correctly had no identity cookie yet\r\n\r\nAll cookie-header HTTP tests passed.\r\n"
+    },
+    {
+      "name": "engine/tests/google-crawler-group-test.php",
+      "command": "php engine/tests/google-crawler-group-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 63.3113,
+      "output": "ok:   Googlebot verifies only in common range\r\nok:   Googlebot does not verify in special range\r\nok:   AdsBot verifies in special range\r\nok:   AdsBot does not verify in common range\r\nok:   InspectionTool verifies in user-triggered range\r\nok:   refreshed cache preserves claim groups\r\n\r\nGoogle crawler group test passed.\r\n"
+    },
+    {
+      "name": "engine/tests/known-crawler-test.php",
+      "command": "php engine/tests/known-crawler-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 96.567,
+      "output": "-- scoring: self-declared crawlers are worth 0 points --\r\nok:   crawler UA \"googlebot\" scores 0 and does not trigger\r\nok:   crawler UA \"adsbot\" scores 0 and does not trigger\r\nok:   crawler UA \"adsbot_mobile\" scores 0 and does not trigger\r\nok:   crawler UA \"mediapartners\" scores 0 and does not trigger\r\nok:   crawler UA \"mediapartners_m\" scores 0 and does not trigger\r\nok:   crawler UA \"bingbot\" scores 0 and does not trigger\r\nok:   crawler UA \"inspection\" scores 0 and does not trigger\r\nok:   crawler UA \"googlebot\" still scores 0 with NO verifier\r\nok:   crawler UA \"adsbot\" still scores 0 with NO verifier\r\nok:   crawler UA \"adsbot_mobile\" still scores 0 with NO verifier\r\nok:   crawler UA \"mediapartners\" still scores 0 with NO verifier\r\nok:   crawler UA \"mediapartners_m\" still scores 0 with NO verifier\r\nok:   crawler UA \"bingbot\" still scores 0 with NO verifier\r\nok:   crawler UA \"inspection\" still scores 0 with NO verifier\r\n\r\n-- scoring: covert automation still scores --\r\nok:   covert automation \"curl\" still scores 40\r\nok:   covert automation \"python\" still scores 40\r\nok:   covert automation \"headless\" still scores 40\r\nok:   ordinary Chrome scores 0\r\nok:   missing User-Agent still scores 40\r\n\r\n-- verification: address decides, never the User-Agent alone --\r\nok:   AdsBot from a published special range is VERIFIED\r\nok:   Googlebot from a published common range is VERIFIED\r\nok:   SPOOFED Google UA from an unrelated address is NOT verified\r\nok:   generic Google Cloud address is NOT a verified crawler\r\nok:   a browser UA from a crawler range is NOT_CLAIMED (no reverse allowlisting)\r\nok:   bingbot is not verified by GOOGLE ranges (vendor is not cross-honoured)\r\nok:   no verifier -> VERIFICATION_UNAVAILABLE, never a free pass\r\n\r\n-- self-declaration is recorded as description --\r\nok:   self_declared_crawler is true for a bot UA\r\nok:   self_declared_crawler is false for Chrome\r\n\r\n-- CIDR matching --\r\nok:   IPv6 prefix matches inside the /64\r\nok:   IPv6 address outside the /64 does not match\r\nok:   /27 boundary: .96 is inside\r\nok:   /27 boundary: .127 is inside\r\nok:   /27 boundary: .95 is outside\r\nok:   /27 boundary: .128 is outside\r\nok:   address above 127.x matches (no 32-bit integer overflow)\r\nok:   malformed CIDR is rejected, not stored\r\nok:   empty/garbage IP never matches\r\n\r\n-- range cache: every failure mode is neutral --\r\nok:   absent cache -> status \"absent\", verifier usable but empty\r\nok:   malformed cache -> status \"malformed\", no exception\r\nok:   valid cache -> status \"ok\" and verification works\r\nok:   stale cache is ignored -> \"unavailable\", not a stale assertion\r\nok:   cache with zero prefixes -> status \"empty\"\r\n\r\n-- laziness: an ordinary browser must never pay for the range data --\r\nok:   browser UA does not load the range cache at all\r\nok:   a crawler claim loads the cache on first need and verifies\r\nok:   a deferred loader that throws yields \"unavailable\", not a fatal\r\nok:   a throwing verifier degrades to \"unavailable\" without failing the signal\r\n\r\nAll known-crawler classification tests passed.\r\n"
+    },
+    {
+      "name": "engine/tests/rate-limit-signal-test.php",
+      "command": "php engine/tests/rate-limit-signal-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 81.0648,
+      "output": "ok:   at threshold (5/5) -> not yet triggered\r\nok:   6th request in window -> triggered\r\nok:   6th request -> score > 0\r\nok:   reason mentions the 10s window\r\nok:   different IP -> independent bucket, not triggered\r\nok:   inspect() called 10x -> never mutates, still not triggered\r\nok:   inspect() never wrote a storage entry for a fresh IP\r\nok:   missing IP -> neutral, not triggered\r\nok:   missing IP -> score 0\r\n\r\nAll RateLimitSignal self-tests passed.\r\n"
+    },
+    {
+      "name": "engine/tests/session-churn-signal-test.php",
+      "command": "php engine/tests/session-churn-signal-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 84.7879,
+      "output": "-- establishing precondition: sending output so headers_sent() becomes true --\r\nok:   precondition: headers really are sent\r\nok:   fail-safe: 10 cookie-less requests never trigger when cookie cannot be issued\r\nok:   fail-safe: score stays 0\r\nok:   fail-safe: counter never advanced past 0\r\nok:   fail-safe: result is marked degraded\r\nok:   fail-safe: reason explains why counting is disabled\r\nok:   1st new identity -> not yet triggered\r\nok:   2nd new identity -> not yet triggered (at threshold)\r\nok:   3rd new identity -> triggered\r\nok:   3rd new identity -> score > 0\r\nok:   reason mentions \"new identities\"\r\nok:   not marked degraded when the cookie was issued\r\nok:   a cookie was issued once per new identity\r\nok:   10 requests with a stable cookie -> never triggered\r\nok:   stable cookie -> no redundant cookie issued\r\nok:   inspect() called 5x -> never triggers (never mutated)\r\nok:   inspect() never issued a cookie\r\nok:   inspect() never wrote a storage entry for a fresh IP\r\nok:   missing IP -> neutral, not triggered\r\n\r\nAll SessionChurnSignal self-tests passed.\r\n"
+    },
+    {
+      "name": "engine/tests/user-agent-signal-test.php",
+      "command": "php engine/tests/user-agent-signal-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 52.8449,
+      "output": "ok:   normal browser -> not triggered\r\nok:   normal browser -> score 0\r\nok:   missing everything -> triggered\r\nok:   missing everything -> score >= 40\r\nok:   curl UA -> triggered\r\nok:   curl UA -> reason mentions curl\r\nok:   missing Accept-Language only -> triggered\r\nok:   missing Accept-Language only -> weak score (<25)\r\nok:   Googlebot with ordinary headers -> NOT triggered, score 0 (self-declaration is not abuse)\r\nok:   Googlebot is still described as a self-declared crawler in metrics\r\nok:   Googlebot without headers scores the header penalties ONLY (30, not 70)\r\n\r\nAll UserAgentAnomalySignal self-tests passed.\r\n"
+    },
+    {
+      "name": "engine/tests/visitor-rate-signal-test.php",
+      "command": "php engine/tests/visitor-rate-signal-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 79.0894,
+      "output": "ok:   new visitor without identity is neutral\r\nok:   visitor at threshold is allowed\r\nok:   same visitor above threshold triggers\r\nok:   different visitor behind same IP has an independent bucket\r\nok:   storage degradation is exposed in metrics\r\n\r\nAll VisitorRateSignal self-tests passed.\r\n"
+    },
+    {
+      "name": "tests/ad-defense-bridge-test.php",
+      "command": "php tests/ad-defense-bridge-test.php",
+      "status": "SKIP",
+      "exit_code": 0,
+      "duration_ms": 49.4019,
+      "output": "skip: host project adapter not present (C:\\Users\\User\\Desktop\\Template\\AdGuard-Template/include/ad-defense.php)\r\n      This suite only applies to an installation that integrates\r\n      AdGuard through its own ad-defense adapter.\r\n"
+    },
+    {
+      "name": "tests/ad-guard-test.php",
+      "command": "php tests/ad-guard-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 85.2662,
+      "output": "ok:   ALLOW leaves the complete HTML byte-for-byte unchanged\r\nok:   ALLOW logs one ad decision\r\nok:   ALLOW inventories repeated manual placements by slot and DOM order\r\nok:   ALLOW records loader and manual placements as provided, not impressions\r\nok:   DENY removes the Google executable bootstrap\r\nok:   DENY preserves page content and unrelated scripts\r\nok:   DENY may leave inert manual unit markup\r\nok:   DENY logs exactly one removed bootstrap\r\nok:   DENY records the loader and every manual placement as blocked\r\nok:   adapter-suppressed Auto Ads opportunity is counted as one blocked bootstrap\r\nok:   strong automation signal denies even at ELEVATED combined level\r\nok:   storage-degraded risk verdict fails closed for ads\r\nok:   decision-provider exception fails closed without escaping\r\nok:   monitor mode records would-deny but leaves ads executable\r\nok:   non-ad HTML passes unchanged\r\nok:   non-ad HTML does not evaluate or log\r\nok:   non-HTML response is never rewritten\r\n\r\nAll AdGuard unit tests passed.\r\n"
+    },
+    {
+      "name": "tests/adsense-correlation-test.php",
+      "command": "php tests/adsense-correlation-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 98.335,
+      "output": "ok:   site aliases resolve to one stable site_id\r\nok:   wildcard paths resolve to one route group\r\nok:   IPv4 network correlation uses /24 before HMAC\r\nok:   IPv6 network correlation uses /64 before HMAC\r\nok:   new log records stable site and route labels\r\nok:   new log records raw IP beside network HMAC\r\nok:   server-owned redirect rule label is recorded\r\nok:   schema v3 stores bounded per-slot delivery outcomes\r\nok:   CSV report rows normalize without click identities\r\nok:   normalized aggregate snapshot is stored privately\r\nok:   CTR and local risk surges correlate only at aggregate level\r\nok:   visitor identity survives and exposes rotating IP behavior\r\nok:   direct visitor-rate behavior receives strong local evidence\r\nok:   behavior pattern survives changing IPs without claiming a click\r\nok:   analysis explicitly refuses click-to-IP attribution\r\nok:   analysis artifact is saved under protected storage\r\n\r\nAll AdSense aggregate correlation tests passed.\r\n"
+    },
+    {
+      "name": "tests/auto-prepend-integration-test.php",
+      "command": "php tests/auto-prepend-integration-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 142.9037,
+      "output": "ok:   child PHP process exits cleanly\r\nok:   auto-prepend preserves page content\r\nok:   headerless CLI request is denied and bootstrap removed\r\nok:   auto-detected ad page creates a structured decision log\r\n\r\nAdGuard auto-prepend integration test passed.\r\n"
+    },
+    {
+      "name": "tests/behavior-analysis-test.php",
+      "command": "php tests/behavior-analysis-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 67.5279,
+      "output": "ok:   low-and-slow actor has bounded timing samples\r\nok:   regular intervals are reported as periodic evidence\r\nok:   distributed rotation remains visible beside timing\r\nok:   behavior cluster carries timing without click attribution\r\n\r\nBehavior analysis test passed.\r\n"
+    },
+    {
+      "name": "tests/policy-safety-test.php",
+      "command": "php tests/policy-safety-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 62.938,
+      "output": "ok:   per-IP signal 'rate_limit' cannot reach the blocking band alone\r\nok:   per-IP signal 'session_churn' cannot reach the blocking band alone\r\nok:   per-IP signal 'rate_limit' is not a hard-deny rule\r\nok:   per-IP signal 'session_churn' is not a hard-deny rule\r\nok:   hard-deny minimum for 'user_agent' is a meaningful score, not a hair trigger\r\nok:   hard-deny minimum for 'visitor_rate' is a meaningful score, not a hair trigger\r\nok:   a per-identity or direct-evidence signal can still block\r\nok:   viewer.allowed_ips exists and is a list (deny-by-default when empty)\r\nok:   missing guard config keeps monitor mode\r\nok:   invalid guard mode keeps monitor mode\r\n\r\nAll policy safety invariants hold.\r\n"
+    },
+    {
+      "name": "tests/raw-ip-schema-test.php",
+      "command": "php tests/raw-ip-schema-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 82.439,
+      "output": "ok:   untrusted forwarded header is ignored\r\nok:   trusted proxy forwarded address is logged\r\nok:   IPv4-mapped IPv6 address is logged\r\nok:   three v3 records were written\r\nok:   schema version is v3\r\nok:   raw IP preserves direct peer\r\nok:   untrusted XFF does not change canonical IP\r\nok:   trusted XFF selects client address\r\nok:   mapped IPv6 canonicalizes to IPv4\r\nok:   IP HMAC is retained beside raw IP\r\nok:   mapped IPv6 shares the canonical IP HMAC\r\nok:   full user agent is retained\r\nok:   request is classified as an ad opportunity document\r\n\r\nRaw IP schema test passed.\r\n"
+    },
+    {
+      "name": "tests/viewer-actor-cap-test.php",
+      "command": "php tests/viewer-actor-cap-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 67.0155,
+      "output": "ok:   summary total stays exact after actor cap\r\nok:   actor ranking is bounded\r\nok:   truncation is explicit\r\n\r\nViewer actor cap test passed.\r\n"
+    },
+    {
+      "name": "tests/viewer-date-range-test.php",
+      "command": "php tests/viewer-date-range-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 103.0909,
+      "output": "ok:   day: one local day spans two UTC files and yields 3 records\r\nok:   day: reads exactly the two overlapping UTC files, never more\r\nok:   backward compatible: ?date= alone still means that single day\r\nok:   no date parameter keeps the historical default of today\r\nok:   all: every valid record is counted exactly once (6, not 12)\r\nok:   all: each raw log file is opened exactly once (3 files)\r\nok:   all: summary total matches the row total\r\nok:   all: reports the real data extent, not the request\r\nok:   all: impossible and non-conforming filenames are never read\r\nok:   all: rows are ordered newest first across file boundaries\r\nok:   range: boundaries are inclusive on both ends (4 records)\r\nok:   range: excludes the local day just past the end date\r\nok:   range: a one-day range equals the same day in day mode\r\nok:   month: August covers its own local days only (4 records)\r\nok:   month: end date uses calendar arithmetic, not a fixed length\r\nok:   month: a 28-day February ends on the 28th\r\nok:   month: a leap February ends on the 29th\r\nok:   an explicitly supplied impossible date is an error, not today\r\nok:   a malformed date is rejected rather than coerced\r\nok:   an unknown date_mode is rejected\r\nok:   an impossible month is rejected\r\nok:   a range whose start is after its end is rejected\r\nok:   an array-valued date parameter is rejected, not stringified\r\nok:   a path-traversal date is rejected before any file is touched\r\nok:   a rejected period returns the same summary shape as a valid one\r\nok:   a valid future date is a normal query with an empty result\r\nok:   a period with no data returns an empty result, not an error\r\nok:   a path filter narrows rows but not the period summary\r\nok:   identifier drill-down works across the whole period\r\nok:   combined range + level filter yields no false matches\r\nok:   one-day view sees only that day half of a midnight-straddling burst\r\nok:   multi-day view keeps the rolling window across the date change\r\nok:   pagination: every page reports the same unfiltered total\r\nok:   pagination: page 1 starts at the newest record\r\nok:   pagination: page 2 continues without gap or overlap\r\nok:   pagination: a deep page still resolves to the right offset\r\nok:   pagination: the last page holds the remaining oldest rows\r\nok:   pagination: a page past the end is empty, not an error\r\n\r\nViewer date-range tests passed (day / all / range / month).\r\n"
+    },
+    {
+      "name": "tests/viewer-timezone-test.php",
+      "command": "php tests/viewer-timezone-test.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 66.2684,
+      "output": "ok:   viewer exposes Asia/Seoul as its reporting timezone\r\nok:   available dates include the KST date crossing a UTC filename boundary\r\nok:   one KST day reads records from both overlapping UTC files\r\nok:   records outside the selected KST day are excluded\r\nok:   UTC timestamps are presented as KST wall-clock values\r\nok:   slot opportunities and loader outcomes aggregate by path and placement\r\nok:   IP activity exposes total and rolling 10-minute/one-hour density\r\n\r\nViewer KST timezone tests passed.\r\n"
+    },
+    {
+      "name": "engine/tests/boundary-check.php",
+      "command": "php engine/tests/boundary-check.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "BOUNDARY CHECK PASSED -- 18 file(s) scanned under risk-engine.php/src/config, zero ad-domain or cross-boundary references.\r\n"
+    },
+    {
+      "name": "tools/php56-check-selftest.php",
+      "command": "php tools/php56-check-selftest.php",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "ok:   bad fixture flags: declare(strict_types)\r\nok:   bad fixture flags: scalar parameter type\r\nok:   bad fixture flags: nullable parameter type\r\nok:   bad fixture flags: return type declaration\r\nok:   bad fixture flags: union parameter type\r\nok:   bad fixture flags: T_COALESCE\r\nok:   bad fixture flags: T_SPACESHIP\r\nok:   bad fixture flags: function random_bytes()\r\nok:   bad fixture flags: function intdiv()\r\nok:   bad fixture flags: function str_contains()\r\nok:   bad fixture flags: function array_key_first()\r\nok:   bad fixture flags: T_FN\r\nok:   bad fixture flags: T_MATCH\r\nok:   bad fixture flags: T_NULLSAFE_OBJECT_OPERATOR\r\nok:   bad fixture flags: anonymous class\r\nok:   bad fixture flags: T_COALESCE_EQUAL\r\nok:   bad fixture flags: class/interface Throwable\r\nok:   bad fixture flags: multi-catch\r\nok:   bad fixture flags: class/interface TypeError\r\nok:   bad fixture flags: class/interface ValueError\r\nok:   bad fixture flags: constant PHP_INT_MIN\r\nok:   bad fixture flags: constant JSON_THROW_ON_ERROR\r\nok:   bad fixture flags: T_YIELD_FROM\r\nok:   bad fixture -> non-zero exit code\r\nok:   clean fixture -> \"no post-PHP-5.6\" result\r\nok:   clean fixture -> exit code 0\r\nok:   engine/ -> \"no post-PHP-5.6\" result\r\n\r\nphp56-compat-check.php self-test passed: detects every known-bad category, zero false positives on clean code, engine/ itself is clean.\r\n"
+    },
+    {
+      "name": "php56-static",
+      "command": "php tools/php56-check.php adguard.php auto-prepend.php viewer.php config src engine tests",
+      "status": "PASS",
+      "exit_code": 0,
+      "output": "PHP 5.6 static compatibility audit\r\nauditor running on PHP 8.5.5\r\nfiles scanned: 61\r\n\r\nRESULT: no post-PHP-5.6 syntax, function, class or constant usage found.\r\n"
+    },
+    {
+      "name": "php-lint",
+      "command": "php -l <each PHP file>",
+      "status": "PASS",
+      "files": [
+        {
+          "path": "adguard.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\adguard.php\r\n"
+        },
+        {
+          "path": "auto-prepend.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\auto-prepend.php\r\n"
+        },
+        {
+          "path": "viewer.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\viewer.php\r\n"
+        },
+        {
+          "path": "config/guard.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\config\\guard.php\r\n"
+        },
+        {
+          "path": "engine/risk-engine.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\risk-engine.php\r\n"
+        },
+        {
+          "path": "engine/src/Config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Config.php\r\n"
+        },
+        {
+          "path": "engine/src/Engine.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Engine.php\r\n"
+        },
+        {
+          "path": "engine/src/RequestContext.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\RequestContext.php\r\n"
+        },
+        {
+          "path": "engine/src/SignalInterface.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\SignalInterface.php\r\n"
+        },
+        {
+          "path": "engine/src/SignalResult.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\SignalResult.php\r\n"
+        },
+        {
+          "path": "engine/src/Verdict.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Verdict.php\r\n"
+        },
+        {
+          "path": "engine/src/Identity/IpResolver.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Identity\\IpResolver.php\r\n"
+        },
+        {
+          "path": "engine/src/KnownCrawlers/CrawlerVerifier.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\KnownCrawlers\\CrawlerVerifier.php\r\n"
+        },
+        {
+          "path": "engine/src/KnownCrawlers/IpRangeSet.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\KnownCrawlers\\IpRangeSet.php\r\n"
+        },
+        {
+          "path": "engine/src/KnownCrawlers/RangeCache.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\KnownCrawlers\\RangeCache.php\r\n"
+        },
+        {
+          "path": "engine/src/Scoring/ScoreCombiner.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Scoring\\ScoreCombiner.php\r\n"
+        },
+        {
+          "path": "engine/src/Signals/RateLimitSignal.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Signals\\RateLimitSignal.php\r\n"
+        },
+        {
+          "path": "engine/src/Signals/SessionChurnSignal.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Signals\\SessionChurnSignal.php\r\n"
+        },
+        {
+          "path": "engine/src/Signals/UserAgentAnomalySignal.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Signals\\UserAgentAnomalySignal.php\r\n"
+        },
+        {
+          "path": "engine/src/Signals/VisitorRateSignal.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Signals\\VisitorRateSignal.php\r\n"
+        },
+        {
+          "path": "engine/src/Storage/FileStorage.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Storage\\FileStorage.php\r\n"
+        },
+        {
+          "path": "engine/src/Storage/StorageInterface.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\src\\Storage\\StorageInterface.php\r\n"
+        },
+        {
+          "path": "engine/tests/boundary-check.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\boundary-check.php\r\n"
+        },
+        {
+          "path": "engine/tests/combined-verdict-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\combined-verdict-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/concurrency-storage-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\concurrency-storage-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/cookie-header-http-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\cookie-header-http-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/google-crawler-group-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\google-crawler-group-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/known-crawler-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\known-crawler-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/rate-limit-signal-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\rate-limit-signal-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/session-churn-signal-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\session-churn-signal-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/user-agent-signal-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\user-agent-signal-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/visitor-rate-signal-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\visitor-rate-signal-test.php\r\n"
+        },
+        {
+          "path": "engine/tests/support/CookieIssuingChurnSignal.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\support\\CookieIssuingChurnSignal.php\r\n"
+        },
+        {
+          "path": "engine/tests/support/emit-identity-cookie.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\support\\emit-identity-cookie.php\r\n"
+        },
+        {
+          "path": "engine/tests/support/http-risk-config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\support\\http-risk-config.php\r\n"
+        },
+        {
+          "path": "engine/tests/support/rate-limit-worker.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\support\\rate-limit-worker.php\r\n"
+        },
+        {
+          "path": "engine/tests/support/ThrowingSignal.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\engine\\tests\\support\\ThrowingSignal.php\r\n"
+        },
+        {
+          "path": "src/AdsenseDetector.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\AdsenseDetector.php\r\n"
+        },
+        {
+          "path": "src/AdsenseReport.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\AdsenseReport.php\r\n"
+        },
+        {
+          "path": "src/AnalyticsContext.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\AnalyticsContext.php\r\n"
+        },
+        {
+          "path": "src/Config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\Config.php\r\n"
+        },
+        {
+          "path": "src/DecisionLogger.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\DecisionLogger.php\r\n"
+        },
+        {
+          "path": "src/Guard.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\Guard.php\r\n"
+        },
+        {
+          "path": "src/LogReader.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\LogReader.php\r\n"
+        },
+        {
+          "path": "src/RiskCorrelationAnalyzer.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\src\\RiskCorrelationAnalyzer.php\r\n"
+        },
+        {
+          "path": "tests/ad-defense-bridge-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\ad-defense-bridge-test.php\r\n"
+        },
+        {
+          "path": "tests/ad-guard-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\ad-guard-test.php\r\n"
+        },
+        {
+          "path": "tests/adsense-correlation-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\adsense-correlation-test.php\r\n"
+        },
+        {
+          "path": "tests/auto-prepend-integration-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\auto-prepend-integration-test.php\r\n"
+        },
+        {
+          "path": "tests/behavior-analysis-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\behavior-analysis-test.php\r\n"
+        },
+        {
+          "path": "tests/policy-safety-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\policy-safety-test.php\r\n"
+        },
+        {
+          "path": "tests/raw-ip-schema-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\raw-ip-schema-test.php\r\n"
+        },
+        {
+          "path": "tests/viewer-actor-cap-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\viewer-actor-cap-test.php\r\n"
+        },
+        {
+          "path": "tests/viewer-date-range-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\viewer-date-range-test.php\r\n"
+        },
+        {
+          "path": "tests/viewer-timezone-test.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\viewer-timezone-test.php\r\n"
+        },
+        {
+          "path": "tests/fixtures/ad-page.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\fixtures\\ad-page.php\r\n"
+        },
+        {
+          "path": "tests/fixtures/auto-only-page.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\fixtures\\auto-only-page.php\r\n"
+        },
+        {
+          "path": "tests/fixtures/browser-deny-ad-guard.config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\fixtures\\browser-deny-ad-guard.config.php\r\n"
+        },
+        {
+          "path": "tests/fixtures/browser-monitor-ad-guard.config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\fixtures\\browser-monitor-ad-guard.config.php\r\n"
+        },
+        {
+          "path": "tests/fixtures/browser-monitor-risk-engine.config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\fixtures\\browser-monitor-risk-engine.config.php\r\n"
+        },
+        {
+          "path": "tests/fixtures/http-ad-guard.config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tests\\fixtures\\http-ad-guard.config.php\r\n"
+        },
+        {
+          "path": "tools/analyze-adsense-risk.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\analyze-adsense-risk.php\r\n"
+        },
+        {
+          "path": "tools/fetch-adsense-report.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\fetch-adsense-report.php\r\n"
+        },
+        {
+          "path": "tools/import-adsense-report.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\import-adsense-report.php\r\n"
+        },
+        {
+          "path": "tools/php56-check-selftest.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\php56-check-selftest.php\r\n"
+        },
+        {
+          "path": "tools/php56-check.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\php56-check.php\r\n"
+        },
+        {
+          "path": "tools/print-install-config.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\print-install-config.php\r\n"
+        },
+        {
+          "path": "tools/refresh-crawler-ranges.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\refresh-crawler-ranges.php\r\n"
+        },
+        {
+          "path": "tools/report.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\report.php\r\n"
+        },
+        {
+          "path": "tools/viewer-benchmark.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\viewer-benchmark.php\r\n"
+        },
+        {
+          "path": "tools/fixtures/php56-known-bad.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\fixtures\\php56-known-bad.php\r\n"
+        },
+        {
+          "path": "tools/fixtures/php56-known-clean.php",
+          "exit_code": 0,
+          "output": "No syntax errors detected in C:\\Users\\User\\Desktop\\Template\\AdGuard-Template\\adguard\\tools\\fixtures\\php56-known-clean.php\r\n"
+        }
+      ]
+    }
+  ]
+}

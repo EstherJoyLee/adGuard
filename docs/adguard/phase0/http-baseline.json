@@ -1,0 +1,6981 @@
+{
+  "generated_at_utc": "2026-09-10T08:26:00.3113119Z",
+  "php_version": "PHP 8.5.5 (cli) (built: Apr  7 2026 19:23:32) (ZTS Visual C++ 2022 x64)\r\nCopyright (c) The PHP Group\r\nBuilt by The PHP Group\r\nZend Engine v4.5.5, Copyright (c) Zend Technologies\r\n    with Zend OPcache v8.5.5, Copyright (c), by Zend Technologies",
+  "environment": "Windows; PHP built-in single worker; loopback; opcache.enable_cli=0; default monitor policy/rate thresholds/GC; 64 synthetic direct clients with persistent cookies; all synthetic data; no remote HTTP",
+  "samples_per_scenario": 200,
+  "warmup_per_scenario": 20,
+  "html_unchanged": true,
+  "normal_guard_requests": 200,
+  "summary": {
+    "minimal": {
+      "roundtrip_ms": {
+        "count": 200,
+        "mean": 1.128943500000001,
+        "p50": 1.044,
+        "p95": 1.6806,
+        "p99": 1.913,
+        "min": 0.7565,
+        "max": 2.3225
+      },
+      "php_body_ms": {
+        "count": 200,
+        "mean": 0.0028597000000000006,
+        "p50": 0.002861,
+        "p95": 0.005007,
+        "p99": 0.00596,
+        "min": 0.000954,
+        "max": 0.012875
+      },
+      "php_peak_bytes": {
+        "count": 200,
+        "mean": 446278.4,
+        "p50": 442120.0,
+        "p95": 455040.0,
+        "p99": 455040.0,
+        "min": 442104.0,
+        "max": 485968.0
+      },
+      "php_peak_allocated_bytes": {
+        "count": 200,
+        "mean": 2097152.0,
+        "p50": 2097152.0,
+        "p95": 2097152.0,
+        "p99": 2097152.0,
+        "min": 2097152.0,
+        "max": 2097152.0
+      }
+    },
+    "guard-no-ads": {
+      "roundtrip_ms": {
+        "count": 200,
+        "mean": 1.2032324999999997,
+        "p50": 1.1119,
+        "p95": 1.9214,
+        "p99": 2.2547,
+        "min": 0.8383,
+        "max": 2.6512
+      },
+      "php_body_ms": {
+        "count": 200,
+        "mean": 0.12561801500000006,
+        "p50": 0.092983,
+        "p95": 0.251055,
+        "p99": 0.298023,
+        "min": 0.070095,
+        "max": 0.354052
+      },
+      "php_peak_bytes": {
+        "count": 200,
+        "mean": 471062.16,
+        "p50": 464696.0,
+        "p95": 485232.0,
+        "p99": 485232.0,
+        "min": 464696.0,
+        "max": 485232.0
+      },
+      "php_peak_allocated_bytes": {
+        "count": 200,
+        "mean": 2097152.0,
+        "p50": 2097152.0,
+        "p95": 2097152.0,
+        "p99": 2097152.0,
+        "min": 2097152.0,
+        "max": 2097152.0
+      }
+    },
+    "plain-ads": {
+      "roundtrip_ms": {
+        "count": 200,
+        "mean": 1.0326280000000008,
+        "p50": 0.9435,
+        "p95": 1.4709,
+        "p99": 1.916,
+        "min": 0.755,
+        "max": 4.1551
+      },
+      "php_body_ms": {
+        "count": 200,
+        "mean": 0.002353060000000001,
+        "p50": 0.001907,
+        "p95": 0.004053,
+        "p99": 0.00596,
+        "min": 0.000954,
+        "max": 0.00596
+      },
+      "php_peak_bytes": {
+        "count": 200,
+        "mean": 446317.84,
+        "p50": 442392.0,
+        "p95": 455056.0,
+        "p99": 455056.0,
+        "min": 442392.0,
+        "max": 455056.0
+      },
+      "php_peak_allocated_bytes": {
+        "count": 200,
+        "mean": 2097152.0,
+        "p50": 2097152.0,
+        "p95": 2097152.0,
+        "p99": 2097152.0,
+        "min": 2097152.0,
+        "max": 2097152.0
+      }
+    },
+    "guard-ads": {
+      "roundtrip_ms": {
+        "count": 200,
+        "mean": 3.9038815,
+        "p50": 3.2212,
+        "p95": 6.9063,
+        "p99": 8.4799,
+        "min": 2.5596,
+        "max": 10.9224
+      },
+      "php_body_ms": {
+        "count": 200,
+        "mean": 2.6800715900000007,
+        "p50": 2.087116,
+        "p95": 5.529881,
+        "p99": 6.422043,
+        "min": 1.685858,
+        "max": 7.086992
+      },
+      "php_peak_bytes": {
+        "count": 200,
+        "mean": 498987.28,
+        "p50": 496256.0,
+        "p95": 504456.0,
+        "p99": 504456.0,
+        "min": 496256.0,
+        "max": 534112.0
+      },
+      "php_peak_allocated_bytes": {
+        "count": 200,
+        "mean": 2097152.0,
+        "p50": 2097152.0,
+        "p95": 2097152.0,
+        "p99": 2097152.0,
+        "min": 2097152.0,
+        "max": 2097152.0
+      }
+    }
+  },
+  "failure_probe": {
+    "status": 200,
+    "body_unchanged": true,
+    "degraded": "1"
+  },
+  "viewer_proxy_probe": {
+    "status": 404,
+    "peer": "203.0.113.10",
+    "forwarded_client": "198.51.100.1",
+    "allowed_ip": "198.51.100.1"
+  },
+  "storage_webroot_probe": {
+    "status": 200,
+    "synthetic_marker_visible": true,
+    "server": "PHP built-in dev server only; not evidence of Apache/IIS/nginx production configuration"
+  },
+  "samples": [
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3197,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.9214,
+      "elapsed_ms": 0.219107,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0049,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.7263,
+      "elapsed_ms": 4.66013,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.8566,
+      "elapsed_ms": 0.257969,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6217,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.1758,
+      "elapsed_ms": 4.990816,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0853,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9184,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 8.2604,
+      "elapsed_ms": 6.966114,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1503,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1375,
+      "elapsed_ms": 0.179052,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.8311,
+      "elapsed_ms": 5.684853,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5577,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6279,
+      "elapsed_ms": 0.226021,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.031,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9758,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1576,
+      "elapsed_ms": 0.170946,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9871,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.5308,
+      "elapsed_ms": 5.234957,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.8781,
+      "elapsed_ms": 0.184059,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0902,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 7.5363,
+      "elapsed_ms": 5.758047,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.6801,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1635,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 7.1181,
+      "elapsed_ms": 5.934,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1303,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1027,
+      "elapsed_ms": 0.172138,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.9527,
+      "elapsed_ms": 5.529881,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2124,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2181,
+      "elapsed_ms": 0.206232,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9039,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8572,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0361,
+      "elapsed_ms": 0.155926,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8266,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 8.4799,
+      "elapsed_ms": 7.086992,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3354,
+      "elapsed_ms": 0.178099,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9289,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 7.9559,
+      "elapsed_ms": 6.422043,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.4164,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 4.1551,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 10.9224,
+      "elapsed_ms": 4.762173,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1902,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1615,
+      "elapsed_ms": 0.176907,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.8566,
+      "elapsed_ms": 5.757093,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.7581,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.8548,
+      "elapsed_ms": 0.29397,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1031,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0206,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1959,
+      "elapsed_ms": 0.178099,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.901,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.7003,
+      "elapsed_ms": 4.579067,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.297,
+      "elapsed_ms": 0.354052,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2261,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.7778,
+      "elapsed_ms": 4.471064,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0994,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9356,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.4761,
+      "elapsed_ms": 5.251884,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1023,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1684,
+      "elapsed_ms": 0.174046,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.7629,
+      "elapsed_ms": 5.599976,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.6045,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5356,
+      "elapsed_ms": 0.228882,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9996,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9488,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0961,
+      "elapsed_ms": 0.167131,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9918,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.9751,
+      "elapsed_ms": 5.377054,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.2503,
+      "elapsed_ms": 0.267982,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1596,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.0617,
+      "elapsed_ms": 4.851818,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1153,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0837,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.9063,
+      "elapsed_ms": 5.567074,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1818,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.182,
+      "elapsed_ms": 0.175953,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.4865,
+      "elapsed_ms": 4.28009,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.4997,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.8652,
+      "elapsed_ms": 0.263929,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1491,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9119,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1818,
+      "elapsed_ms": 0.167131,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0266,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.8019,
+      "elapsed_ms": 5.466938,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.1105,
+      "elapsed_ms": 0.283003,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1732,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.6295,
+      "elapsed_ms": 4.456997,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0923,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9339,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.4002,
+      "elapsed_ms": 5.268097,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1419,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1648,
+      "elapsed_ms": 0.185966,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.4194,
+      "elapsed_ms": 4.160166,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.571,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.2547,
+      "elapsed_ms": 0.231981,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2553,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0365,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3016,
+      "elapsed_ms": 0.208139,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9379,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.4177,
+      "elapsed_ms": 3.351927,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6942,
+      "elapsed_ms": 0.234127,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.916,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.8385,
+      "elapsed_ms": 5.433083,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1161,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9667,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.333,
+      "elapsed_ms": 4.83799,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2597,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2107,
+      "elapsed_ms": 0.181913,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 8.5125,
+      "elapsed_ms": 4.513025,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 2.3225,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3203,
+      "elapsed_ms": 0.189781,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9218,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8938,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1966,
+      "elapsed_ms": 0.298023,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.902,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.5555,
+      "elapsed_ms": 4.067898,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.2225,
+      "elapsed_ms": 0.251055,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1491,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.1364,
+      "elapsed_ms": 4.79722,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1223,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1466,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.385,
+      "elapsed_ms": 4.673958,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2274,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3093,
+      "elapsed_ms": 0.176907,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.2923,
+      "elapsed_ms": 4.776955,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.913,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2614,
+      "elapsed_ms": 0.178099,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0366,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9013,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0462,
+      "elapsed_ms": 0.154018,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8763,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 7.1303,
+      "elapsed_ms": 5.813837,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.7612,
+      "elapsed_ms": 0.203848,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0052,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.4542,
+      "elapsed_ms": 2.467155,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.098,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.06,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.0076,
+      "elapsed_ms": 3.797054,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5924,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2249,
+      "elapsed_ms": 0.180006,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.5046,
+      "elapsed_ms": 2.35796,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0136,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2355,
+      "elapsed_ms": 0.164986,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9088,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.099,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.7518,
+      "elapsed_ms": 0.346899,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1134,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1456,
+      "elapsed_ms": 2.185822,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3475,
+      "elapsed_ms": 0.159979,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9316,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.4102,
+      "elapsed_ms": 3.279924,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.6295,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5911,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.5734,
+      "elapsed_ms": 4.353046,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2746,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2089,
+      "elapsed_ms": 0.201941,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.1106,
+      "elapsed_ms": 4.918098,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1119,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0867,
+      "elapsed_ms": 0.174046,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8422,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9961,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1771,
+      "elapsed_ms": 0.19598,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9044,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 6.8289,
+      "elapsed_ms": 5.465984,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4338,
+      "elapsed_ms": 0.204802,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0105,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.6344,
+      "elapsed_ms": 3.463984,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1352,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9857,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 5.7788,
+      "elapsed_ms": 4.315138,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1389,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1563,
+      "elapsed_ms": 0.174999,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.4795,
+      "elapsed_ms": 3.278971,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1795,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.9622,
+      "elapsed_ms": 0.262976,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2397,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9829,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1218,
+      "elapsed_ms": 0.185966,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8973,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2988,
+      "elapsed_ms": 2.085924,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3336,
+      "elapsed_ms": 0.178814,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0531,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.2157,
+      "elapsed_ms": 2.650976,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3076,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9942,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.198,
+      "elapsed_ms": 2.106905,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1178,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1119,
+      "elapsed_ms": 0.173092,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.1946,
+      "elapsed_ms": 2.621174,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1775,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.131,
+      "elapsed_ms": 0.174046,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8915,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8739,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0324,
+      "elapsed_ms": 0.160933,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8409,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1963,
+      "elapsed_ms": 2.125978,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6842,
+      "elapsed_ms": 0.224113,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2886,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1275,
+      "elapsed_ms": 2.043009,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0181,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8786,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9219,
+      "elapsed_ms": 1.981974,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3238,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.0039,
+      "elapsed_ms": 0.248909,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.27,
+      "elapsed_ms": 2.120018,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1942,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.212,
+      "elapsed_ms": 0.176191,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.019,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9241,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1807,
+      "elapsed_ms": 0.176907,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3325,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.3268,
+      "elapsed_ms": 2.779007,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2331,
+      "elapsed_ms": 0.170946,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8617,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1236,
+      "elapsed_ms": 2.087116,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0255,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9543,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.5381,
+      "elapsed_ms": 2.7771,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.4001,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2413,
+      "elapsed_ms": 0.185013,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2421,
+      "elapsed_ms": 2.200127,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.017,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0727,
+      "elapsed_ms": 0.160933,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1474,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.7092,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4738,
+      "elapsed_ms": 0.206947,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9261,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1788,
+      "elapsed_ms": 2.06089,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3463,
+      "elapsed_ms": 0.19002,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8549,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9933,
+      "elapsed_ms": 2.015114,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.901,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6134,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1484,
+      "elapsed_ms": 2.07901,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1607,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0443,
+      "elapsed_ms": 0.160933,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1621,
+      "elapsed_ms": 2.140045,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5446,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.9961,
+      "elapsed_ms": 0.207901,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0675,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9212,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455040.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0793,
+      "elapsed_ms": 0.165939,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8585,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0691,
+      "elapsed_ms": 2.063036,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1865,
+      "elapsed_ms": 0.157118,
+      "peak_bytes": 485232.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0472,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 455056.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.9573,
+      "elapsed_ms": 2.511024,
+      "peak_bytes": 504456.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1245,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 485968.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9892,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0249,
+      "elapsed_ms": 2.086163,
+      "peak_bytes": 534112.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.109,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9827,
+      "elapsed_ms": 0.086069,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.4743,
+      "elapsed_ms": 3.077984,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2348,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9813,
+      "elapsed_ms": 0.09203,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8504,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.7756,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8724,
+      "elapsed_ms": 0.072956,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8116,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.728,
+      "elapsed_ms": 1.842976,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3976,
+      "elapsed_ms": 0.083923,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4893,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1024,
+      "elapsed_ms": 1.939058,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0497,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8874,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1985,
+      "elapsed_ms": 2.04587,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1052,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4578,
+      "elapsed_ms": 0.105143,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.18,
+      "elapsed_ms": 2.28405,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0598,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9201,
+      "elapsed_ms": 0.082016,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8756,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.784,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8612,
+      "elapsed_ms": 0.071049,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.755,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.4893,
+      "elapsed_ms": 1.926899,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.0063,
+      "elapsed_ms": 0.154972,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3323,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.555,
+      "elapsed_ms": 2.28405,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0301,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9769,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1961,
+      "elapsed_ms": 1.988888,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.8706,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2563,
+      "elapsed_ms": 0.102997,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.964,
+      "elapsed_ms": 1.954079,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.8027,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0154,
+      "elapsed_ms": 0.09203,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8332,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.7869,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9529,
+      "elapsed_ms": 0.074148,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8409,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7921,
+      "elapsed_ms": 1.917124,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9802,
+      "elapsed_ms": 0.074863,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1602,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.9879,
+      "elapsed_ms": 2.362967,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0729,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8885,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2834,
+      "elapsed_ms": 2.115965,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0137,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9243,
+      "elapsed_ms": 0.084162,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.2437,
+      "elapsed_ms": 2.902031,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2759,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2233,
+      "elapsed_ms": 0.109196,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9107,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8333,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9425,
+      "elapsed_ms": 0.08297,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8544,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7709,
+      "elapsed_ms": 1.909971,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5047,
+      "elapsed_ms": 0.10705,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1956,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0506,
+      "elapsed_ms": 1.976967,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9879,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9435,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7785,
+      "elapsed_ms": 1.878977,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.936,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2118,
+      "elapsed_ms": 0.097036,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.8147,
+      "elapsed_ms": 2.501011,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0324,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.927,
+      "elapsed_ms": 0.083208,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7939,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8339,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8781,
+      "elapsed_ms": 0.072002,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7814,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7312,
+      "elapsed_ms": 1.867056,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5351,
+      "elapsed_ms": 0.118971,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2474,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0072,
+      "elapsed_ms": 1.970053,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8681,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8294,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8789,
+      "elapsed_ms": 1.904011,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.044,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2337,
+      "elapsed_ms": 0.119925,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.2321,
+      "elapsed_ms": 2.741098,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1302,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0104,
+      "elapsed_ms": 0.09203,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8783,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8342,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9178,
+      "elapsed_ms": 0.078917,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8165,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.8212,
+      "elapsed_ms": 2.67601,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6869,
+      "elapsed_ms": 0.10705,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9799,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9537,
+      "elapsed_ms": 1.980066,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9286,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8449,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7582,
+      "elapsed_ms": 1.869917,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5311,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5549,
+      "elapsed_ms": 0.133991,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.099,
+      "elapsed_ms": 1.94788,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0794,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.953,
+      "elapsed_ms": 0.085115,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8888,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8001,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8383,
+      "elapsed_ms": 0.07391,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.799,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.7993,
+      "elapsed_ms": 2.37608,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1427,
+      "elapsed_ms": 0.087976,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8583,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8929,
+      "elapsed_ms": 1.976013,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8962,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9111,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7219,
+      "elapsed_ms": 1.783133,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.4907,
+      "elapsed_ms": 0.004768,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.31,
+      "elapsed_ms": 0.094891,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.016,
+      "elapsed_ms": 1.917124,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9247,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0735,
+      "elapsed_ms": 0.087976,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8141,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.796,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8636,
+      "elapsed_ms": 0.070095,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7716,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.9493,
+      "elapsed_ms": 2.396107,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2422,
+      "elapsed_ms": 0.098944,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 2.804,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8227,
+      "elapsed_ms": 1.875162,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9608,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9543,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.6162,
+      "elapsed_ms": 2.408028,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2117,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0273,
+      "elapsed_ms": 0.08893,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9013,
+      "elapsed_ms": 1.919985,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9459,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8829,
+      "elapsed_ms": 0.072956,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7932,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8005,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2422,
+      "elapsed_ms": 0.253201,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2592,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1723,
+      "elapsed_ms": 2.023935,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0908,
+      "elapsed_ms": 0.078917,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9603,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7917,
+      "elapsed_ms": 1.831055,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.962,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7798,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2791,
+      "elapsed_ms": 2.120972,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1996,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9804,
+      "elapsed_ms": 0.086069,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7745,
+      "elapsed_ms": 1.88899,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8888,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0102,
+      "elapsed_ms": 0.090122,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8072,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.7857,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8602,
+      "elapsed_ms": 0.072956,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0384,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.6165,
+      "elapsed_ms": 2.415895,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0439,
+      "elapsed_ms": 0.078917,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8993,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8906,
+      "elapsed_ms": 1.816034,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0176,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9035,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.1818,
+      "elapsed_ms": 2.673864,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1818,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0288,
+      "elapsed_ms": 0.101089,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8463,
+      "elapsed_ms": 1.918077,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9191,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9459,
+      "elapsed_ms": 0.076056,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8051,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.7565,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1628,
+      "elapsed_ms": 0.076056,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1832,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.3067,
+      "elapsed_ms": 2.149105,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0708,
+      "elapsed_ms": 0.087976,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8508,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8343,
+      "elapsed_ms": 1.878977,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9244,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8544,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.4112,
+      "elapsed_ms": 2.341986,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3367,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0474,
+      "elapsed_ms": 0.09203,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9633,
+      "elapsed_ms": 1.885891,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.998,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0289,
+      "elapsed_ms": 0.089884,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8231,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.7975,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8836,
+      "elapsed_ms": 0.072002,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0085,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.4454,
+      "elapsed_ms": 2.216816,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2479,
+      "elapsed_ms": 0.08893,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9194,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7551,
+      "elapsed_ms": 1.724958,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8772,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7993,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0077,
+      "elapsed_ms": 1.878977,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.6029,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0796,
+      "elapsed_ms": 0.092983,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8366,
+      "elapsed_ms": 1.802921,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0173,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9684,
+      "elapsed_ms": 0.080824,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8771,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8453,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9131,
+      "elapsed_ms": 0.094175,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0924,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.0181,
+      "elapsed_ms": 2.310038,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 2.6512,
+      "elapsed_ms": 0.088215,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9652,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7785,
+      "elapsed_ms": 1.833916,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9355,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0025,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.2263,
+      "elapsed_ms": 2.680063,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0563,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9331,
+      "elapsed_ms": 0.08893,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7758,
+      "elapsed_ms": 1.788855,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.973,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4114,
+      "elapsed_ms": 0.106812,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4709,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2737,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9957,
+      "elapsed_ms": 0.089884,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8263,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8984,
+      "elapsed_ms": 1.971006,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1358,
+      "elapsed_ms": 0.092983,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8405,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0387,
+      "elapsed_ms": 1.722097,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.8245,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2099,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.156,
+      "elapsed_ms": 1.948118,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0578,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9426,
+      "elapsed_ms": 0.087023,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7304,
+      "elapsed_ms": 1.788855,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3357,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6089,
+      "elapsed_ms": 0.121832,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9817,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9253,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9294,
+      "elapsed_ms": 0.091076,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7872,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.6289,
+      "elapsed_ms": 1.795053,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9706,
+      "elapsed_ms": 0.072956,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9109,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2201,
+      "elapsed_ms": 2.002954,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5926,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0116,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7265,
+      "elapsed_ms": 1.804113,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9311,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9328,
+      "elapsed_ms": 0.079155,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7516,
+      "elapsed_ms": 1.78194,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9979,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4164,
+      "elapsed_ms": 0.104904,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1452,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8975,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9454,
+      "elapsed_ms": 0.083923,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7919,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7581,
+      "elapsed_ms": 1.905203,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9172,
+      "elapsed_ms": 0.07987,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8478,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.5864,
+      "elapsed_ms": 1.685858,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3835,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.253,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9325,
+      "elapsed_ms": 1.925945,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9503,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9189,
+      "elapsed_ms": 0.086784,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9229,
+      "elapsed_ms": 1.991987,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.912,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1988,
+      "elapsed_ms": 0.079155,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3972,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0101,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9598,
+      "elapsed_ms": 0.087976,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7971,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9626,
+      "elapsed_ms": 1.97506,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.082,
+      "elapsed_ms": 0.096083,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9051,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.6863,
+      "elapsed_ms": 1.760006,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.4624,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4629,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2929,
+      "elapsed_ms": 2.027035,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0712,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9857,
+      "elapsed_ms": 0.084162,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.6589,
+      "elapsed_ms": 1.765966,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9499,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3137,
+      "elapsed_ms": 0.109911,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5917,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0088,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9138,
+      "elapsed_ms": 0.087023,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9261,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8747,
+      "elapsed_ms": 1.897097,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.134,
+      "elapsed_ms": 0.087976,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8742,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1832,
+      "elapsed_ms": 1.936197,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5871,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0831,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8821,
+      "elapsed_ms": 1.818895,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0006,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0001,
+      "elapsed_ms": 0.083208,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.6986,
+      "elapsed_ms": 1.75786,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0366,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5836,
+      "elapsed_ms": 0.103951,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3036,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0925,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0167,
+      "elapsed_ms": 0.092983,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0082,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8715,
+      "elapsed_ms": 1.891851,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0422,
+      "elapsed_ms": 0.080109,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9294,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.9438,
+      "elapsed_ms": 2.43783,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0572,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9331,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8946,
+      "elapsed_ms": 1.881123,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9534,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9828,
+      "elapsed_ms": 0.08297,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1839,
+      "elapsed_ms": 1.964092,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5303,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1816,
+      "elapsed_ms": 0.09203,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9164,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8635,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9581,
+      "elapsed_ms": 0.07987,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8283,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8683,
+      "elapsed_ms": 1.841068,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0257,
+      "elapsed_ms": 0.081062,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4464,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.6495,
+      "elapsed_ms": 2.046108,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0259,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.966,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7541,
+      "elapsed_ms": 1.789093,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0263,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9744,
+      "elapsed_ms": 0.082016,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.5136,
+      "elapsed_ms": 2.825975,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1141,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9798,
+      "elapsed_ms": 0.088215,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8425,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8845,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8997,
+      "elapsed_ms": 0.077963,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8038,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7382,
+      "elapsed_ms": 1.827002,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3861,
+      "elapsed_ms": 0.112057,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4883,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9673,
+      "elapsed_ms": 1.878977,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0094,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8777,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.6516,
+      "elapsed_ms": 1.721144,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9101,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9617,
+      "elapsed_ms": 0.077009,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.8114,
+      "elapsed_ms": 2.411842,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0623,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0383,
+      "elapsed_ms": 0.084162,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8583,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8119,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8875,
+      "elapsed_ms": 0.074863,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8187,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.5596,
+      "elapsed_ms": 1.699924,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2042,
+      "elapsed_ms": 0.071049,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3155,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2824,
+      "elapsed_ms": 2.070904,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9825,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8373,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.6635,
+      "elapsed_ms": 1.74284,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9007,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8954,
+      "elapsed_ms": 0.075102,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.3454,
+      "elapsed_ms": 2.197981,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5122,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0226,
+      "elapsed_ms": 0.088215,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8636,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8596,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9229,
+      "elapsed_ms": 0.077009,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7908,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8755,
+      "elapsed_ms": 1.873016,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9666,
+      "elapsed_ms": 0.076056,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2661,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.7256,
+      "elapsed_ms": 2.341032,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9634,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.863,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8108,
+      "elapsed_ms": 1.838207,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9294,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9199,
+      "elapsed_ms": 0.074863,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.3332,
+      "elapsed_ms": 2.102137,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.6855,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1288,
+      "elapsed_ms": 0.091076,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9267,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8342,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9979,
+      "elapsed_ms": 0.077009,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7831,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8106,
+      "elapsed_ms": 1.839161,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1515,
+      "elapsed_ms": 0.093937,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0664,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.8422,
+      "elapsed_ms": 2.394915,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2357,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8619,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1273,
+      "elapsed_ms": 2.135038,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0822,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9246,
+      "elapsed_ms": 0.082016,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.8036,
+      "elapsed_ms": 2.348185,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3972,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1264,
+      "elapsed_ms": 0.094891,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1964,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0965,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0234,
+      "elapsed_ms": 0.09203,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8524,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.003,
+      "elapsed_ms": 2.709866,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5548,
+      "elapsed_ms": 0.095129,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1142,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.7424,
+      "elapsed_ms": 2.518177,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0424,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9038,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.6185,
+      "elapsed_ms": 2.424955,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.4676,
+      "elapsed_ms": 0.006914,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1609,
+      "elapsed_ms": 0.089169,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0713,
+      "elapsed_ms": 2.037048,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9872,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9442,
+      "elapsed_ms": 0.08297,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8548,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8065,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9227,
+      "elapsed_ms": 0.079155,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2273,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.6908,
+      "elapsed_ms": 2.144098,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0781,
+      "elapsed_ms": 0.087023,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0743,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0379,
+      "elapsed_ms": 2.070904,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9516,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9027,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.4184,
+      "elapsed_ms": 2.821922,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0863,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.992,
+      "elapsed_ms": 0.089884,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9997,
+      "elapsed_ms": 2.002954,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0078,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9933,
+      "elapsed_ms": 0.083923,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8915,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9111,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3834,
+      "elapsed_ms": 0.104904,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3384,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.916,
+      "elapsed_ms": 1.821995,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2243,
+      "elapsed_ms": 0.091076,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.996,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8057,
+      "elapsed_ms": 1.783848,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.948,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.337,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.1036,
+      "elapsed_ms": 2.440929,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0481,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0029,
+      "elapsed_ms": 0.085115,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8311,
+      "elapsed_ms": 1.80912,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9513,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0791,
+      "elapsed_ms": 0.095129,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9128,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.6806,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5006,
+      "elapsed_ms": 0.101089,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9907,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9239,
+      "elapsed_ms": 1.928091,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2686,
+      "elapsed_ms": 0.100136,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9526,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9597,
+      "elapsed_ms": 1.811028,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.9283,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.4614,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8396,
+      "elapsed_ms": 1.791954,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0042,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1348,
+      "elapsed_ms": 0.191927,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8059,
+      "elapsed_ms": 1.808167,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9987,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5187,
+      "elapsed_ms": 0.11301,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.5547,
+      "elapsed_ms": 0.00596,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9656,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9472,
+      "elapsed_ms": 0.089169,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8583,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8422,
+      "elapsed_ms": 1.815796,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2746,
+      "elapsed_ms": 0.101805,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9953,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.9807,
+      "elapsed_ms": 3.06797,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5188,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0695,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9863,
+      "elapsed_ms": 1.935959,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.009,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0902,
+      "elapsed_ms": 0.087023,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.8611,
+      "elapsed_ms": 2.353907,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.3463,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0432,
+      "elapsed_ms": 0.092983,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9166,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9255,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442104.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9337,
+      "elapsed_ms": 0.082016,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8327,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.7723,
+      "elapsed_ms": 1.876831,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0656,
+      "elapsed_ms": 0.086069,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.3513,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.3938,
+      "elapsed_ms": 2.000093,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1289,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0002,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1282,
+      "elapsed_ms": 1.893044,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0267,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.6514,
+      "elapsed_ms": 0.11301,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.8877,
+      "elapsed_ms": 2.215862,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1932,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0902,
+      "elapsed_ms": 0.09799,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8977,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8712,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.943,
+      "elapsed_ms": 0.087976,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.7941,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.0603,
+      "elapsed_ms": 2.459049,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.144,
+      "elapsed_ms": 0.086069,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9169,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8678,
+      "elapsed_ms": 1.843929,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.948,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0388,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9301,
+      "elapsed_ms": 1.863956,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.4969,
+      "elapsed_ms": 0.003815,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2413,
+      "elapsed_ms": 0.100136,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9222,
+      "elapsed_ms": 1.832008,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0722,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.132,
+      "elapsed_ms": 0.089884,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0059,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.0116,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1106,
+      "elapsed_ms": 0.092983,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.116,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.827,
+      "elapsed_ms": 2.398968,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1463,
+      "elapsed_ms": 0.087023,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9875,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2325,
+      "elapsed_ms": 2.151012,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.009,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9268,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.543,
+      "elapsed_ms": 2.222061,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.5372,
+      "elapsed_ms": 0.012875,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0538,
+      "elapsed_ms": 0.094891,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.1957,
+      "elapsed_ms": 2.134085,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9897,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.022,
+      "elapsed_ms": 0.08297,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8628,
+      "elapsed_ms": 0.001192,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8383,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9998,
+      "elapsed_ms": 0.076056,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1659,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.7369,
+      "elapsed_ms": 2.40016,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2233,
+      "elapsed_ms": 0.089169,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9636,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.8786,
+      "elapsed_ms": 1.880884,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9717,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.976,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.2212,
+      "elapsed_ms": 2.070904,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.501,
+      "elapsed_ms": 0.005007,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.0961,
+      "elapsed_ms": 0.09203,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9676,
+      "elapsed_ms": 1.914024,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1078,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9946,
+      "elapsed_ms": 0.083923,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8674,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.8416,
+      "elapsed_ms": 0.002146,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9198,
+      "elapsed_ms": 0.074863,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 1.2393,
+      "elapsed_ms": 0.002861,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.648,
+      "elapsed_ms": 2.135038,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 1.1218,
+      "elapsed_ms": 0.085831,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.956,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 3.0005,
+      "elapsed_ms": 1.883984,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.1373,
+      "elapsed_ms": 0.003099,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9454,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 4.4189,
+      "elapsed_ms": 2.972126,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 1.2132,
+      "elapsed_ms": 0.004053,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9921,
+      "elapsed_ms": 0.090122,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-ads",
+      "status": 200,
+      "roundtrip_ms": 2.9063,
+      "elapsed_ms": 1.908064,
+      "peak_bytes": 496256.0,
+      "peak_allocated_bytes": 2097152.0,
+      "risk": "NORMAL",
+      "degraded": "0"
+    },
+    {
+      "scenario": "minimal",
+      "status": 200,
+      "roundtrip_ms": 0.9594,
+      "elapsed_ms": 0.001907,
+      "peak_bytes": 442120.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "guard-no-ads",
+      "status": 200,
+      "roundtrip_ms": 0.9951,
+      "elapsed_ms": 0.080109,
+      "peak_bytes": 464696.0,
+      "peak_allocated_bytes": 2097152.0
+    },
+    {
+      "scenario": "plain-ads",
+      "status": 200,
+      "roundtrip_ms": 0.8395,
+      "elapsed_ms": 0.000954,
+      "peak_bytes": 442392.0,
+      "peak_allocated_bytes": 2097152.0
+    }
+  ]
+}

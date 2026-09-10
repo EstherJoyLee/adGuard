@@ -1,0 +1,354 @@
+[
+  {
+    "path": ".user.ini.example",
+    "sha256": "9D16A6572C115F47C85955991C46E4D3D92AD5AEB53639C9DE1234B863007FA9"
+  },
+  {
+    "path": "adguard.php",
+    "sha256": "7D96D0C548EEC628780A96739E7DDD871F6FA806A373A82C37CA9CD06549E76F"
+  },
+  {
+    "path": "auto-prepend.php",
+    "sha256": "82DBD03772C0CF7B037223B86D223F5D022B674D994FA0AEDEE2B17FF74620BD"
+  },
+  {
+    "path": "config/engine.php.example",
+    "sha256": "899559651781EF412B3EA2B6534F0C04C135200669BD8DC0817627CE7B0909D5"
+  },
+  {
+    "path": "config/guard.php",
+    "sha256": "A02CF4001CDCA2148E8500D1C4C867FF913BD689E5C191CCF24A200735D0CB3C"
+  },
+  {
+    "path": "docs/ADGUARD-OPERATIONS-GUIDE.md",
+    "sha256": "0794B98C07DC17743721A66213A93225DB2AF0CC6CD15F6247A736FB475461B3"
+  },
+  {
+    "path": "docs/adguard/ADGUARD_V2_CODEX_PHASE_PROMPTS.md",
+    "sha256": "EE249F6045BF431F9B9552D8E465F8C80313A044EEE79E75CFBFE4247532FFFA"
+  },
+  {
+    "path": "docs/adguard/ADGUARD_V2_DESIGN.md",
+    "sha256": "5ED78542CFBB51A36E9C1C0350CA42CA6F436A546886ADBCA3799F6F977A35A1"
+  },
+  {
+    "path": "docs/adguard/ADGUARD_V2_IMPLEMENTATION_PLAN.md",
+    "sha256": "33B57B1F5F55E8BCCFB8D733CCE00EEA05C9A7DF7ACAE87EF0BF5E5B29040A3D"
+  },
+  {
+    "path": "docs/adguard/IMPLEMENTATION_STATE.md",
+    "sha256": "9126E2CDABBB801E87336E9360F582F1B74C59D24DEA6D1CF1DFBA2293BED379"
+  },
+  {
+    "path": "docs/ADMOB-TEST.md",
+    "sha256": "6EEE3530877C515945557BD18908DF1EFE4AEB2AA338D2DE8FABC1F31A5E9877"
+  },
+  {
+    "path": "docs/ADSENSE-RISK-ENGINE-GUIDE.md",
+    "sha256": "1D7CD0B1D637D224373D2B567656C45ADF8A09C37B66E0B56010C047E5B6F9F3"
+  },
+  {
+    "path": "docs/ADSENSE-RISK-VIEWER-CHEATSHEET.md",
+    "sha256": "65829CCC5FBD27637599D80311A236AAA9B9822FDD59A5543D4B79A37596D657"
+  },
+  {
+    "path": "docs/RISK-ENGINE-DEBUGGING.md",
+    "sha256": "FA1E109AE6BD3D0BA7E48EB4609389E457A881419F70A6AEDCB0D9E30E6340F3"
+  },
+  {
+    "path": "engine/README.md",
+    "sha256": "F7E3E05E7D6484CBDBFD4D319E74A510955EC39A432D67FEB49CC1C142B19F12"
+  },
+  {
+    "path": "engine/risk-engine.php",
+    "sha256": "F5D664B63659CA1106D7F5582C6C78CE4CBEB94E0D6554689B077788C4F2A9EA"
+  },
+  {
+    "path": "engine/src/Config.php",
+    "sha256": "380CC38C753516C454603689A36081431607AEDB9DE21F79A1CE08B9F5076C48"
+  },
+  {
+    "path": "engine/src/Engine.php",
+    "sha256": "2018354F05FA53961377D5AE656C2EA4331FFEF4FF873C6494F829DB862DC303"
+  },
+  {
+    "path": "engine/src/Identity/IpResolver.php",
+    "sha256": "C9714FE88FE8CE7AD7050E31C97B5247899EB065A2A7C1A0B346D91A50A4B05C"
+  },
+  {
+    "path": "engine/src/KnownCrawlers/CrawlerVerifier.php",
+    "sha256": "D333E52DE478C1885438F0FE59E602054F814A45DCA139668AC41B71B69D5E3B"
+  },
+  {
+    "path": "engine/src/KnownCrawlers/IpRangeSet.php",
+    "sha256": "8D075E12A82636A25C7F8DA1F4F2B83A5435F3934C0D7060BFDDC0ED2C6CA7B7"
+  },
+  {
+    "path": "engine/src/KnownCrawlers/RangeCache.php",
+    "sha256": "43AF80CF97D9742B21531360A3DE285B3C88386FCD5E0A7470459FA82D1BF7DB"
+  },
+  {
+    "path": "engine/src/RequestContext.php",
+    "sha256": "766637DA469F33ED67195E3A1E792C2E2CB66F64AC10C25D65E92C73C4706F1D"
+  },
+  {
+    "path": "engine/src/Scoring/ScoreCombiner.php",
+    "sha256": "9D75768A08ED231DA5E26875FA2B02BB5E7C23061C7D37470B27FF21B5F35C24"
+  },
+  {
+    "path": "engine/src/SignalInterface.php",
+    "sha256": "81ABB9D527C0C41252C072C8161283D7C4A32827E9062BB13123783C8253164E"
+  },
+  {
+    "path": "engine/src/SignalResult.php",
+    "sha256": "D57FE197D36CC767D1A206DE15D923D0EE291F5AD1F0526413FA19F3DA5654D6"
+  },
+  {
+    "path": "engine/src/Signals/RateLimitSignal.php",
+    "sha256": "446DD2C4BA13D186684822AE0309AD35002B47FF97A589E6A172129E5597DFFF"
+  },
+  {
+    "path": "engine/src/Signals/SessionChurnSignal.php",
+    "sha256": "EED3CAD3203C0EA5B81517C155B6DB018A60C62CE71ACBEBFEF5162D4C7453AF"
+  },
+  {
+    "path": "engine/src/Signals/UserAgentAnomalySignal.php",
+    "sha256": "562B7F6CC4795A43BC0A75B92DE0608A64CCB74823149447F06C933C798178EA"
+  },
+  {
+    "path": "engine/src/Signals/VisitorRateSignal.php",
+    "sha256": "9D4B8A0EC83E7A662D15140551FEA923AB364E625523C37E03F0BB8060868C49"
+  },
+  {
+    "path": "engine/src/Storage/FileStorage.php",
+    "sha256": "CE7BE419B7870172A54140F84943117E0F90E2DE8FD74E12D030343B1C6F2786"
+  },
+  {
+    "path": "engine/src/Storage/StorageInterface.php",
+    "sha256": "25F02FA3FAC5A70C7255DB107ABC2FD1538E7F4DD20A9E7B81077B28B5C56452"
+  },
+  {
+    "path": "engine/src/Verdict.php",
+    "sha256": "10F6E47EF2BB3DE6093E2828F67708EB3223C814C0AF8CCC9AD2E765C2EFC676"
+  },
+  {
+    "path": "engine/tests/boundary-check.php",
+    "sha256": "A2CA6E18D22F0FECF9ECC52B87842F26425AE1356EA873A42922107C3B8A060D"
+  },
+  {
+    "path": "engine/tests/combined-verdict-test.php",
+    "sha256": "7C80FEA7EAD1EC9C5A1B157C00E6D9B592CC52048C07F5AF358E93780EE5153A"
+  },
+  {
+    "path": "engine/tests/concurrency-storage-test.php",
+    "sha256": "DDD61BA706BF8D2EEA13E33DEE68FD303674A4FF1539BE54985824873EDA870B"
+  },
+  {
+    "path": "engine/tests/cookie-header-http-test.php",
+    "sha256": "402079FD9399B0621E7653DE7CBA66221DAFC3D64BF6AA883A5B3BEE80963FA8"
+  },
+  {
+    "path": "engine/tests/google-crawler-group-test.php",
+    "sha256": "59C9B3E0CF3195025F063ADDD82B4A6EFC049DDE0EE0A93EDBBDAD065BDF925E"
+  },
+  {
+    "path": "engine/tests/known-crawler-test.php",
+    "sha256": "6B1FBC934E0169C370038780354E6B1D57BF6270CA34832498E6C9627C421813"
+  },
+  {
+    "path": "engine/tests/rate-limit-signal-test.php",
+    "sha256": "E4294742AD4DDC250858ACF879812FC5B5F7822030B035807DE06218F5E653B6"
+  },
+  {
+    "path": "engine/tests/session-churn-signal-test.php",
+    "sha256": "33E3F90F75BF655919FF7F654B920F2B42A0EEBC03B681311464F0B23C9842C2"
+  },
+  {
+    "path": "engine/tests/support/CookieIssuingChurnSignal.php",
+    "sha256": "68AE17A54C3D63BA307E5EB8669ADBCEABBF5051045B1A3DFA1E5151499C116C"
+  },
+  {
+    "path": "engine/tests/support/emit-identity-cookie.php",
+    "sha256": "4D221DF2BB86ABB51F72AB5AF2300426B194FF2E90046E8F0515B633C4B4A189"
+  },
+  {
+    "path": "engine/tests/support/http-risk-config.php",
+    "sha256": "6CFE5D8B59B50A8C4C49843AD9CC9FBF5C7BF6144089BEA8031286E67B94CCB1"
+  },
+  {
+    "path": "engine/tests/support/rate-limit-worker.php",
+    "sha256": "05EB23CD19D47C926E3B03FA27882C6EA59FE5EE972D7DE6CB75E0091650F99E"
+  },
+  {
+    "path": "engine/tests/support/ThrowingSignal.php",
+    "sha256": "6F99190C8E832E86CF4C7ACC854767A367EF4AC0650A023E8D9E1931EAC92925"
+  },
+  {
+    "path": "engine/tests/user-agent-signal-test.php",
+    "sha256": "B822A9761B06E27BC7B3EBE15E2C44E49961160C43C4385F41470EAD3A6ED342"
+  },
+  {
+    "path": "engine/tests/visitor-rate-signal-test.php",
+    "sha256": "D7A6EF26805B374EA32E78128E55FE16FE0EEA1305B6A981F7939329165CFF4B"
+  },
+  {
+    "path": "README.md",
+    "sha256": "0B6358B1C67A87261FDB872FFD8BD68548A4F75887E63A4DFD01CF73D1CB3F6D"
+  },
+  {
+    "path": "src/AdsenseDetector.php",
+    "sha256": "7AE64D4449559AFFC17A2740FB5453D0E689E5ADAF72A87A407102BB71E4693C"
+  },
+  {
+    "path": "src/AdsenseReport.php",
+    "sha256": "45B1C1C3F600B3288E070A5FC5E8C3C26942AC01B95D89B76F8C17D262BD3C61"
+  },
+  {
+    "path": "src/AnalyticsContext.php",
+    "sha256": "66CB92F42D91AC1FE071DF338B55A900A70A06A9A5A065F4591299CB578DA7E5"
+  },
+  {
+    "path": "src/Config.php",
+    "sha256": "3C6492CB2F3C395A53AEB107500A6EBEEEB2C2B46C59AAF5FC7A1729266D6DA8"
+  },
+  {
+    "path": "src/DecisionLogger.php",
+    "sha256": "40F066A5DC81926D62F8E618AED9F07D9B6DBDBEFB95DE98FA4DE023CBE63435"
+  },
+  {
+    "path": "src/Guard.php",
+    "sha256": "B2231026123E59F478208DFFE9023CBBA884D6442C37B0D4048C6BF6B9D770FB"
+  },
+  {
+    "path": "src/LogReader.php",
+    "sha256": "17A275AACA04A85BFEAFD7C7D4ADD90D40E10FA9CDDED4F64AC9DFE0AF00586B"
+  },
+  {
+    "path": "src/RiskCorrelationAnalyzer.php",
+    "sha256": "BECF5C92F1E68E53B6740BE4092A61EFB03BDF5A8AFEE5C3E7812B450A4C0FDC"
+  },
+  {
+    "path": "storage/.htaccess",
+    "sha256": "C6E3514E5EDA5BA0DA028B3495C49627BFCC185BD6852B3DEB0E1EDADB6778B1"
+  },
+  {
+    "path": "storage/index.html",
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "storage/web.config",
+    "sha256": "438E48656590FA33D836DBAAD450A31057FC1F9DFB0F6BD681C6F72FC5789466"
+  },
+  {
+    "path": "tests/ad-defense-bridge-test.php",
+    "sha256": "C14AD0A4684E0E0AF0435EECD90C73BEED36EC465DA5CBBC8F3B2C8A82B3FA22"
+  },
+  {
+    "path": "tests/ad-guard-test.php",
+    "sha256": "E0AD79CA0E138D169CCC383A574F2E587D2E90FA0FB28CA2AAFF8C44DE190163"
+  },
+  {
+    "path": "tests/adsense-correlation-test.php",
+    "sha256": "23F1984DADA61A52040A43DE37752C3B406666C4FA01817539F6411CAB83560D"
+  },
+  {
+    "path": "tests/auto-prepend-integration-test.php",
+    "sha256": "BBCE4B52CCF422281637D6C88BCB4C983F6A40339C344799AD4BDD506FABFFB5"
+  },
+  {
+    "path": "tests/behavior-analysis-test.php",
+    "sha256": "0DAD08E64C0DD5A17E6CDF3231312A543960FB1EDE3433EC36F17B8EEB3E7C7B"
+  },
+  {
+    "path": "tests/fixtures/ad-page.php",
+    "sha256": "ADB3690523C6762F2BF8C68B938104828E413618DE01E40EF870D6AC71AE7372"
+  },
+  {
+    "path": "tests/fixtures/auto-only-page.php",
+    "sha256": "59A68525E01823C87879FDF828613961A5A5581D0A2A26A2249E8248ABA47950"
+  },
+  {
+    "path": "tests/fixtures/browser-deny-ad-guard.config.php",
+    "sha256": "E7E7AE7DFB2D85AE00513C7D9DDC2A880E7D724E98AA2404C9A38B4439725B8E"
+  },
+  {
+    "path": "tests/fixtures/browser-monitor-ad-guard.config.php",
+    "sha256": "395C974FCE65B765B3717BFC1F06272D264FD2E8CCB331C5949E4838E3AAB37A"
+  },
+  {
+    "path": "tests/fixtures/browser-monitor-risk-engine.config.php",
+    "sha256": "BE7D5FCB74A78C94E2D38D12920D5008F896B4015F1F67A674FE02937F8CCC68"
+  },
+  {
+    "path": "tests/fixtures/http-ad-guard.config.php",
+    "sha256": "AF208A9188136B8BA1BD8D8E8DB750536DBACA7DEC836F67AB4514D6142C1360"
+  },
+  {
+    "path": "tests/policy-safety-test.php",
+    "sha256": "CE2DF250F785715F7CD3C19DD763CDAA08D64B00F825E73245D68DA02F688856"
+  },
+  {
+    "path": "tests/raw-ip-schema-test.php",
+    "sha256": "86D1D27AE993D84E5B4E39F998776F8F584A8E3A03D6AEAA3F6712A52FC7CE7F"
+  },
+  {
+    "path": "tests/viewer-actor-cap-test.php",
+    "sha256": "2628B42CE6A17CFB665328FDECDD423422F082B82984C74C5EF4349654164BA3"
+  },
+  {
+    "path": "tests/viewer-date-range-test.php",
+    "sha256": "2BA1669A512DD814403D60947C1E87AB52051A2E5ADF24F0EE283A83834E3312"
+  },
+  {
+    "path": "tests/viewer-timezone-test.php",
+    "sha256": "E47ABA924702EC372B022C03FF45C977D4B12FE842775E041EBFC7803A10167D"
+  },
+  {
+    "path": "tools/analyze-adsense-risk.php",
+    "sha256": "E1A76C05CC26C8FF4E13914B3347B0B83B5BA1F56CCC00ECCA6CD1E543B3964C"
+  },
+  {
+    "path": "tools/fetch-adsense-report.php",
+    "sha256": "1020508DB94328D0CA55E81509F0977AD17134907C4291AE1FB84026F6B351DE"
+  },
+  {
+    "path": "tools/fixtures/php56-known-bad.php",
+    "sha256": "CF3DB0FB717F0A3207FEFDCD4A30DD00B769AF3C47FFD3CEC1A6634FB1C7EFDA"
+  },
+  {
+    "path": "tools/fixtures/php56-known-clean.php",
+    "sha256": "EB838D5A3D3B3385F45061521DBFE439C9A2D387420EAD91B03C9154553F2B25"
+  },
+  {
+    "path": "tools/import-adsense-report.php",
+    "sha256": "29F84507546AA74AA3858578ED2B07283662ADDCCF539B723B8D30466A664714"
+  },
+  {
+    "path": "tools/php56-check-selftest.php",
+    "sha256": "105F0147C3C9AB11CF84E0AB03BB33EECEB4CDB6AB8235FFCC707361724E1742"
+  },
+  {
+    "path": "tools/php56-check.php",
+    "sha256": "528C2ED75E2BA75E4B12C876FA87FC67B44F01505ED72FAD385B4396763397DB"
+  },
+  {
+    "path": "tools/print-install-config.php",
+    "sha256": "B4E59FEEF77A8FCF1D68E62536E30F8B4279641CEE664CA6B4A3D2F459A3E92E"
+  },
+  {
+    "path": "tools/refresh-crawler-ranges.php",
+    "sha256": "5B32FF793B6D08A27A0CE88364AFEC5ED7024C1DB5B2A9CDE7B9258D28DEB0E3"
+  },
+  {
+    "path": "tools/report.php",
+    "sha256": "7A5DA63A88937ACB0E2DB4C14A8E425392B6F6AB252663BEE4CB80FD3ACA7BAD"
+  },
+  {
+    "path": "tools/viewer-benchmark.php",
+    "sha256": "FD898777D0EF826069B18ADA7D7F14D8FEDCB368BB5AEB7B738A9EDD5A786816"
+  },
+  {
+    "path": "viewer.php",
+    "sha256": "3ED82EDEEAF10FDA1359D7CDE28A0C95ED5A4D35C14857513D5196322D6E8501"
+  }
+]
