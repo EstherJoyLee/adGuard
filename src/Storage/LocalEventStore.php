@@ -10,6 +10,7 @@ class LocalEventStore
 {
     private $config;
     private $health;
+    private $retentionChecked = false;
 
     public function __construct(Config $config)
     {
@@ -44,6 +45,7 @@ class LocalEventStore
         if ($path === '' || !$this->provisionDirectory($path)) {
             return $this->failure($path, 'directory_unavailable', $startedAt);
         }
+        $this->pruneExpiredLogs($path);
         $file = $path . '/ad-guard-' . gmdate('Y-m-d') . '.jsonl';
         $handle = @fopen($file, 'ab');
         if ($handle === false) {
@@ -181,5 +183,39 @@ class LocalEventStore
             }
         }
         return true;
+    }
+
+    /** Best-effort retention with a hard per-request directory entry budget. */
+    private function pruneExpiredLogs($path)
+    {
+        if ($this->retentionChecked) {
+            return;
+        }
+        $this->retentionChecked = true;
+        $days = (int)$this->config->get('logging.retention_days', 90);
+        if ($days <= 0) {
+            return;
+        }
+        $limit = max(1, min(512, (int)$this->config->get('telemetry.retention_scan_limit', 256)));
+        $cutoff = time() - ($days * 86400);
+        try {
+            $iterator = new \FilesystemIterator($path, \FilesystemIterator::SKIP_DOTS);
+        } catch (\Exception $exception) {
+            return;
+        }
+        $visited = 0;
+        foreach ($iterator as $item) {
+            if (++$visited > $limit) {
+                break;
+            }
+            if (!$item->isFile()
+                || !preg_match('/^ad-guard-(\d{4})-(\d{2})-(\d{2})(?:-health)?\.jsonl$/D', $item->getFilename(), $match)) {
+                continue;
+            }
+            $stamp = @gmmktime(23, 59, 59, (int)$match[2], (int)$match[3], (int)$match[1]);
+            if ($stamp !== false && $stamp < $cutoff) {
+                @unlink($item->getPathname());
+            }
+        }
     }
 }

@@ -281,6 +281,22 @@ $oversizedKeyNetwork = $oversizedKeyRequest->toArray();
 telemetry_component_assert($failures, 'oversized HMAC key file is rejected by a bounded read',
     $oversizedKeyNetwork['network']['ip_hmac'] === '');
 
+$retentionDir = $base . '/retention-logs';
+@mkdir($retentionDir, 0700, true);
+$expiredLog = $retentionDir . '/ad-guard-2000-01-01.jsonl';
+file_put_contents($expiredLog, "{}\n");
+file_put_contents($retentionDir . '/unrelated-file.txt', 'keep');
+$retentionConfig = telemetry_component_config($base, array(
+    'logging' => array('path' => $retentionDir, 'retention_days' => 1),
+    'telemetry' => array('retention_scan_limit' => 16),
+));
+$retentionStore = new \AdGuard\Storage\LocalEventStore($retentionConfig);
+$retentionResult = $retentionStore->append($record);
+telemetry_component_assert($failures, 'bounded retention removes expired event logs only',
+    $retentionResult['written'] === true
+    && !file_exists($expiredLog)
+    && is_file($retentionDir . '/unrelated-file.txt'));
+
 telemetry_component_remove_tree($base);
 
 if ($failures) {

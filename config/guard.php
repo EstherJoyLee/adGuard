@@ -53,6 +53,7 @@ return array(
         'max_query_keys' => 32,
         'max_query_key_bytes' => 64,
         'lock_timeout_ms' => 2,
+        'retention_scan_limit' => 256,
     ),
 
     /*

@@ -132,6 +132,7 @@ class Config
                 'max_query_key_bytes' => 64,
                 // Short retry budget; failure drops telemetry, never content.
                 'lock_timeout_ms' => 2,
+                'retention_scan_limit' => 256,
                 'agent_version' => '2.0.0-phase1',
                 'rule_version' => 'legacy-v1',
             ),
