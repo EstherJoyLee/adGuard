@@ -1,6 +1,10 @@
 <?php
 namespace AdGuard;
 
+require_once __DIR__ . '/Telemetry/EventNormalizer.php';
+
+use AdGuard\Telemetry\EventNormalizer;
+
 /**
  * Server-side reader for the decision log.
  *
@@ -286,6 +290,12 @@ class LogReader
             'data_start' => '',
             'data_end' => '',
             'files_read' => 0,
+            'read_health' => array(
+                'health' => 0,
+                'malformed' => 0,
+                'unsupported' => 0,
+                'invalid' => 0,
+            ),
         );
         if ($period['error'] !== '') {
             $this->finalizeSummary($summary);
@@ -317,13 +327,25 @@ class LogReader
                 continue;
             }
             $filesRead++;
-            while (($line = fgets($handle)) !== false) {
-                $line = trim($line);
-                if ($line === '') {
+            $maximumBytes = (int)$this->config->get('telemetry.max_event_bytes', 16384);
+            while (true) {
+                $readReason = '';
+                $source = EventNormalizer::readNext($handle, $maximumBytes, $readReason);
+                if ($source === false && $readReason === 'eof') {
+                    break;
+                }
+                if ($source === null) {
+                    if (isset($result['read_health'][$readReason])) {
+                        $result['read_health'][$readReason]++;
+                    }
                     continue;
                 }
-                $record = json_decode($line, true);
-                if (!is_array($record)) {
+                $normalizeReason = '';
+                $record = EventNormalizer::normalize($source, $normalizeReason);
+                if ($record === null) {
+                    if (isset($result['read_health'][$normalizeReason])) {
+                        $result['read_health'][$normalizeReason]++;
+                    }
                     continue;
                 }
                 /*
@@ -469,6 +491,7 @@ class LogReader
             'actions' => array('ALLOW' => 0, 'DENY' => 0, 'MONITOR_DENY' => 0),
             'ads_served' => 0,
             'ads_not_served' => 0,
+            'ads_unknown' => 0,
             'degraded' => 0,
             'bootstrap_removed' => 0,
             'ad_delivery' => array(
@@ -512,13 +535,13 @@ class LogReader
 
         // "Did the visitor actually receive a runnable bootstrap?" -- older
         // records predate this field, so fall back to the decision.
-        $served = array_key_exists('ads_served', $record)
-            ? !empty($record['ads_served'])
-            : !empty($record['ads_allowed']);
-        if ($served) {
+        $served = $this->servedValue($record);
+        if ($served === true) {
             $summary['ads_served']++;
-        } else {
+        } elseif ($served === false) {
             $summary['ads_not_served']++;
+        } else {
+            $summary['ads_unknown']++;
         }
 
         if (!empty($record['degraded'])) {
@@ -751,13 +774,11 @@ class LogReader
             }
         }
         if (isset($filters['served']) && $filters['served'] !== '') {
-            $served = array_key_exists('ads_served', $record)
-                ? !empty($record['ads_served'])
-                : !empty($record['ads_allowed']);
+            $served = $this->servedValue($record);
             if ($filters['served'] === 'yes' && !$served) {
                 return false;
             }
-            if ($filters['served'] === 'no' && $served) {
+            if ($filters['served'] === 'no' && $served !== false) {
                 return false;
             }
         }
@@ -779,20 +800,31 @@ class LogReader
         return true;
     }
 
+    private function servedValue($record)
+    {
+        if (array_key_exists('ads_served', $record) && $record['ads_served'] !== null) {
+            return (bool)$record['ads_served'];
+        }
+        if (array_key_exists('ads_allowed', $record) && $record['ads_allowed'] !== null) {
+            return (bool)$record['ads_allowed'];
+        }
+        return null;
+    }
+
     private function presentRow($record)
     {
         $signals = array();
         if (!empty($record['signals']) && is_array($record['signals'])) {
             foreach ($record['signals'] as $name => $signal) {
                 if (!empty($signal['triggered'])) {
-                    $signals[] = $name . '=' . (isset($signal['score']) ? (int)$signal['score'] : 0);
+                    $signals[] = isset($signal['score'])
+                        ? $name . '=' . (int)$signal['score']
+                        : (string)$name;
                 }
             }
         }
 
-        $served = array_key_exists('ads_served', $record)
-            ? !empty($record['ads_served'])
-            : !empty($record['ads_allowed']);
+        $served = $this->servedValue($record);
 
         return array(
             'timestamp' => isset($record['timestamp']) ? (string)$record['timestamp'] : '',
@@ -806,7 +838,7 @@ class LogReader
             'crawler_status' => isset($record['crawler_status']) ? (string)$record['crawler_status'] : '',
             'crawler_vendor' => isset($record['crawler_vendor']) ? (string)$record['crawler_vendor'] : '',
             'level' => isset($record['engine_level']) ? (string)$record['engine_level'] : '',
-            'score' => isset($record['score']) ? (int)$record['score'] : 0,
+            'score' => isset($record['score']) ? (int)$record['score'] : null,
             'action' => isset($record['action']) ? (string)$record['action'] : '',
             'policy_reason' => isset($record['policy_reason']) ? (string)$record['policy_reason'] : '',
             'ads_served' => $served,

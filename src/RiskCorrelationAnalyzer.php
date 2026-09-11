@@ -2,6 +2,9 @@
 namespace AdGuard;
 
 require_once __DIR__ . '/AnalyticsContext.php';
+require_once __DIR__ . '/Telemetry/EventNormalizer.php';
+
+use AdGuard\Telemetry\EventNormalizer;
 
 /**
  * Compares daily aggregate AdSense metrics with local ad-bearing risk logs.
@@ -178,6 +181,7 @@ class RiskCorrelationAnalyzer
             'baseline_days' => $baselineDays,
             'adsense_source' => isset($snapshot['source']) ? $snapshot['source'] : '',
             'local_invalid_lines' => $local['invalid_lines'],
+            'local_read_health' => $local['read_health'],
             'click_to_ip_attribution' => false,
             'groups' => $groups,
             'limitations' => array(
@@ -249,6 +253,9 @@ class RiskCorrelationAnalyzer
         $result = array(
             'days' => array(), 'actors' => array(), 'ips' => array(),
             'patterns' => array(), 'invalid_lines' => 0,
+            'read_health' => array(
+                'health' => 0, 'malformed' => 0, 'unsupported' => 0, 'invalid' => 0,
+            ),
         );
         $utcStart = $this->shiftDate($startDate, -1);
         $utcEnd = $this->shiftDate($endDate, 1);
@@ -261,10 +268,40 @@ class RiskCorrelationAnalyzer
             if ($handle === false) {
                 continue;
             }
-            while (($line = fgets($handle)) !== false) {
-                $record = json_decode($line, true);
-                if (!is_array($record)) {
-                    $result['invalid_lines']++;
+            $maximumBytes = (int)$this->config->get('telemetry.max_event_bytes', 16384);
+            while (true) {
+                $readReason = '';
+                $source = EventNormalizer::readNext($handle, $maximumBytes, $readReason);
+                if ($source === false && $readReason === 'eof') {
+                    break;
+                }
+                if ($source === null) {
+                    if (isset($result['read_health'][$readReason])) {
+                        $result['read_health'][$readReason]++;
+                        if ($readReason !== 'health') {
+                            $result['invalid_lines']++;
+                        }
+                    }
+                    continue;
+                }
+                $normalizeReason = '';
+                $record = EventNormalizer::normalize($source, $normalizeReason);
+                if ($record === null) {
+                    if (isset($result['read_health'][$normalizeReason])) {
+                        $result['read_health'][$normalizeReason]++;
+                        if ($normalizeReason !== 'health') {
+                            $result['invalid_lines']++;
+                        }
+                    }
+                    continue;
+                }
+                // AdSense correlation keeps its historical denominator:
+                // schema 4 now contains every request, including pages where
+                // no ad could have been delivered.
+                if ($record['_source_schema_version'] === 4 && $record['ad_opportunity'] !== true) {
+                    continue;
+                }
+                if ($record['_source_schema_version'] !== 4 && $record['ad_opportunity'] === false) {
                     continue;
                 }
                 $date = $this->localDate(isset($record['timestamp']) ? $record['timestamp'] : '');

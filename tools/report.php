@@ -9,6 +9,7 @@
  */
 
 require_once dirname(__DIR__) . '/src/Config.php';
+require_once dirname(__DIR__) . '/src/Telemetry/EventNormalizer.php';
 
 function ad_guard_report_increment(&$bucket, $key)
 {
@@ -90,6 +91,7 @@ $summary = array(
 );
 $rows = 0;
 $invalidRows = 0;
+$readHealth = array('health' => 0, 'malformed' => 0, 'unsupported' => 0, 'invalid' => 0);
 $denied = 0;
 $degraded = 0;
 $uniqueVisitors = array();
@@ -105,6 +107,7 @@ $deliveryTotals = array(
 );
 $manualPlacements = array();
 $scoreTotal = 0;
+$scoreCount = 0;
 $scoreMax = 0;
 $firstTimestamp = '';
 $lastTimestamp = '';
@@ -115,10 +118,31 @@ foreach ($files as $file) {
         fwrite(STDERR, "Cannot read log file: " . $file . "\n");
         continue;
     }
-    while (($line = fgets($handle)) !== false) {
-        $record = json_decode($line, true);
-        if (!is_array($record)) {
-            $invalidRows++;
+    $maximumBytes = (int)$config->get('telemetry.max_event_bytes', 16384);
+    while (true) {
+        $readReason = '';
+        $source = \AdGuard\Telemetry\EventNormalizer::readNext($handle, $maximumBytes, $readReason);
+        if ($source === false && $readReason === 'eof') {
+            break;
+        }
+        if ($source === null) {
+            if (isset($readHealth[$readReason])) {
+                $readHealth[$readReason]++;
+                if ($readReason !== 'health') {
+                    $invalidRows++;
+                }
+            }
+            continue;
+        }
+        $normalizeReason = '';
+        $record = \AdGuard\Telemetry\EventNormalizer::normalize($source, $normalizeReason);
+        if ($record === null) {
+            if (isset($readHealth[$normalizeReason])) {
+                $readHealth[$normalizeReason]++;
+                if ($normalizeReason !== 'health') {
+                    $invalidRows++;
+                }
+            }
             continue;
         }
         $timestamp = isset($record['timestamp']) ? (string)$record['timestamp'] : '';
@@ -134,9 +158,12 @@ foreach ($files as $file) {
         }
 
         $rows++;
-        $score = isset($record['score']) ? (int)$record['score'] : 0;
-        $scoreTotal += $score;
-        $scoreMax = max($scoreMax, $score);
+        if (isset($record['score'])) {
+            $score = (int)$record['score'];
+            $scoreTotal += $score;
+            $scoreCount++;
+            $scoreMax = max($scoreMax, $score);
+        }
         if ($timestamp !== '') {
             if ($firstTimestamp === '' || strcmp($timestamp, $firstTimestamp) < 0) {
                 $firstTimestamp = $timestamp;
@@ -146,8 +173,8 @@ foreach ($files as $file) {
             }
         }
 
-        $allowed = !empty($record['ads_allowed']);
-        if (!$allowed) {
+        $allowed = isset($record['ads_allowed']) ? (bool)$record['ads_allowed'] : null;
+        if ($allowed === false) {
             $denied++;
         }
         if (!empty($record['degraded'])) {
@@ -160,7 +187,7 @@ foreach ($files as $file) {
         ad_guard_report_increment($summary['sites'], isset($record['site_id']) ? $record['site_id'] : '');
         ad_guard_report_increment($summary['route_groups'], isset($record['route_group']) ? $record['route_group'] : $path);
         ad_guard_report_increment($summary['paths'], $path);
-        if (!$allowed) {
+        if ($allowed === false) {
             ad_guard_report_increment($summary['deny_paths'], $path);
         }
         ad_guard_report_increment($summary['policy_reasons'], isset($record['policy_reason']) ? $record['policy_reason'] : '');
@@ -245,6 +272,9 @@ function ad_guard_report_local_timestamp($timestamp, $timezone)
 echo "AdGuard daily report (" . $reportTimezone->getName() . " " . $date . ")\n";
 echo "source UTC files: " . implode(', ', $files) . "\n";
 echo "records: " . $rows . " (invalid lines: " . $invalidRows . ")\n";
+echo "read skips health/malformed/unsupported/invalid: "
+    . $readHealth['health'] . "/" . $readHealth['malformed'] . "/"
+    . $readHealth['unsupported'] . "/" . $readHealth['invalid'] . "\n";
 echo "period: " . ad_guard_report_local_timestamp($firstTimestamp, $reportTimezone)
     . " .. " . ad_guard_report_local_timestamp($lastTimestamp, $reportTimezone) . "\n";
 echo "ad denies: " . $denied . " ("
@@ -253,8 +283,8 @@ echo "degraded decisions: " . $degraded . "\n";
 echo "unique visitor hashes: " . count($uniqueVisitors) . "\n";
 echo "unique IP hashes: " . count($uniqueIps) . "\n";
 echo "unique network hashes (/24 or /64, weak context): " . count($uniqueNetworks) . "\n";
-echo "score average/max: " . ($rows > 0 ? number_format($scoreTotal / $rows, 2) : '0.00')
-    . "/" . $scoreMax . "\n";
+echo "score average/max: " . ($scoreCount > 0 ? number_format($scoreTotal / $scoreCount, 2) : '(unknown)')
+    . "/" . ($scoreCount > 0 ? $scoreMax : '(unknown)') . "\n";
 echo "loader opportunities/provided/blocked/missing: "
     . $deliveryTotals['bootstrap_opportunities'] . "/"
     . $deliveryTotals['bootstrap_provided'] . "/"
@@ -273,12 +303,12 @@ ad_guard_report_print_bucket('Route groups', $summary['route_groups'], 20);
 ad_guard_report_print_bucket('Triggered signals', $summary['signals'], 20);
 ad_guard_report_print_bucket('Policy reasons', $summary['policy_reasons'], 20);
 ad_guard_report_print_bucket('Top denied paths', $summary['deny_paths'], 20);
-ad_guard_report_print_bucket('Top ad-bearing paths', $summary['paths'], 20);
+ad_guard_report_print_bucket('Top request paths', $summary['paths'], 20);
 ad_guard_report_print_bucket('User-Agent families', $summary['ua_families'], 20);
 ad_guard_report_print_bucket('Referrer hosts', $summary['referrer_hosts'], 20);
 ad_guard_report_print_bucket('Referrer groups', $summary['referrer_groups'], 20);
-ad_guard_report_print_bucket('Top IP identifiers by ad-bearing responses', $ipResponseCounts, 20);
-ad_guard_report_print_bucket('Top visitor identifiers by ad-bearing responses', $visitorResponseCounts, 20);
+ad_guard_report_print_bucket('Top IP identifiers by responses', $ipResponseCounts, 20);
+ad_guard_report_print_bucket('Top visitor identifiers by responses', $visitorResponseCounts, 20);
 
 echo "\nManual ad placements (opportunities/provided/blocked/missing)\n";
 if (!$manualPlacements) {
@@ -298,6 +328,6 @@ if (!$manualPlacements) {
 }
 
 echo "\nNotes\n";
-echo "  Counts cover only ad-bearing responses that were logged.\n";
+echo "  Counts cover all active guarded PHP responses that were logged.\n";
 echo "  If allow/deny sample rates are below 1.0, raw counts are samples.\n";
 echo "  Hash counts are pseudonymous estimates, not verified people.\n";
