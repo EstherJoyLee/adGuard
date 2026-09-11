@@ -39,11 +39,20 @@ return array(
     ),
 
     'logging' => array(
-        // v3 stores the full bounded User-Agent and the selected raw client
-        // IP. Keep the log directory outside the document root where possible.
+        // Schema 4 stores the bounded User-Agent and selected raw client IP.
+        // Legacy schema 3 files remain readable. Keep logs outside the
+        // document root where possible.
         'store_user_agent' => true,
         'retention_days' => 90,
         'health_max_daily_bytes' => 1048576,
+    ),
+
+    'telemetry' => array(
+        'max_event_bytes' => 16384,
+        'max_header_bytes' => 1024,
+        'max_query_keys' => 32,
+        'max_query_key_bytes' => 64,
+        'lock_timeout_ms' => 2,
     ),
 
     /*

@@ -122,6 +122,19 @@ class Config
                 // disk-exhaustion attack. Logging stops; ad policy continues.
                 'max_daily_bytes' => 20971520,
             ),
+            'telemetry' => array(
+                // Every limit is clamped again at the use site. These values
+                // keep request evidence useful without allowing attacker-
+                // controlled headers or events to grow without bound.
+                'max_event_bytes' => 16384,
+                'max_header_bytes' => 1024,
+                'max_query_keys' => 32,
+                'max_query_key_bytes' => 64,
+                // Short retry budget; failure drops telemetry, never content.
+                'lock_timeout_ms' => 2,
+                'agent_version' => '2.0.0-phase1',
+                'rule_version' => 'legacy-v1',
+            ),
             /*
              * Stable labels used to compare local risk logs with aggregated
              * AdSense reports. They never claim that a report click belongs
