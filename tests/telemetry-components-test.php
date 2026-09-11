@@ -7,6 +7,28 @@ require_once dirname(__DIR__) . '/src/Telemetry/ResponseTelemetry.php';
 require_once dirname(__DIR__) . '/src/Telemetry/TelemetryEvent.php';
 require_once dirname(__DIR__) . '/src/Storage/LocalEventStore.php';
 
+class TelemetryReadOnlyStream
+{
+    public $context;
+
+    public function url_stat($path, $flags)
+    {
+        return array(
+            0 => 0, 1 => 0, 2 => 0040555, 3 => 0, 4 => 0, 5 => 0, 6 => 0,
+            7 => 0, 8 => time(), 9 => time(), 10 => time(), 11 => -1, 12 => -1,
+            'dev' => 0, 'ino' => 0, 'mode' => 0040555, 'nlink' => 0,
+            'uid' => 0, 'gid' => 0, 'rdev' => 0, 'size' => 0,
+            'atime' => time(), 'mtime' => time(), 'ctime' => time(),
+            'blksize' => -1, 'blocks' => -1,
+        );
+    }
+
+    public function stream_open($path, $mode, $options, &$openedPath)
+    {
+        return false;
+    }
+}
+
 $failures = array();
 function telemetry_component_assert(&$failures, $label, $condition)
 {
@@ -219,6 +241,20 @@ telemetry_component_assert($failures, 'directory/open failure drops quickly with
     && $blocked['dropped'] === true
     && in_array($blocked['reason'], array('directory_unavailable', 'open_failed'), true)
     && $blockedElapsed < 100.0);
+
+$readOnlyRegistered = @stream_wrapper_register('adguardreadonly', 'TelemetryReadOnlyStream');
+if ($readOnlyRegistered) {
+    $readOnlyConfig = telemetry_component_config($base, array(
+        'logging' => array('path' => 'adguardreadonly://logs'),
+    ));
+    $readOnlyStore = new \AdGuard\Storage\LocalEventStore($readOnlyConfig);
+    $readOnlyResult = $readOnlyStore->append($record);
+    telemetry_component_assert($failures, 'read-only storage drops telemetry without throwing',
+        $readOnlyResult['dropped'] === true && $readOnlyResult['reason'] === 'open_failed');
+    stream_wrapper_unregister('adguardreadonly');
+} else {
+    telemetry_component_assert($failures, 'read-only storage drops telemetry without throwing', false);
+}
 
 $lockDir = $base . '/lock-logs';
 @mkdir($lockDir, 0700, true);
