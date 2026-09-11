@@ -1,7 +1,8 @@
 param(
     [ValidateRange(20,400)][int]$Samples = 200,
     [ValidateRange(1,64)][int]$Warmup = 20,
-    [string]$OutputPath = ''
+    [string]$OutputPath = '',
+    [string]$Php = 'php'
 )
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
@@ -67,7 +68,7 @@ try {
     $taskUrl = "http://127.0.0.1:$taskPort"
     $env:PHASE0_BASELINE = '1'
     $env:PHASE0_BASE_DIR = $taskTemp
-    $taskPhp = (Get-Command php).Source
+    $taskPhp = (Get-Command $Php).Source
     # Temporary docroot exposes only fixtures plus a synthetic storage probe.
     $taskDocRoot = Join-Path $taskTemp 'www'
     $taskProbe = Join-Path $taskDocRoot 'storage'

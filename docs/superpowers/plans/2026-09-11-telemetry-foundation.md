@@ -44,7 +44,7 @@
 - Produces: `LocalEventStore(Config $config)` with `append($event)` returning `array('written', 'dropped', 'reason', 'duration_ms')` and `getHealthMetrics()`.
 - Event fields follow Design §9/§9.3. Phase 2–4 values remain `null`, while legacy crawler evidence is isolated under `bot.legacy`.
 
-- [ ] **Step 1: Write component tests that catch unsafe collection, unbounded input, fabricated missing fields, unstable IDs, event overflow, write/open/lock failure, and blocking health writes.**
+- [x] **Step 1: Write component tests that catch unsafe collection, unbounded input, fabricated missing fields, unstable IDs, event overflow, write/open/lock failure, and blocking health writes.**
 
 ```php
 $request = new RequestTelemetry($config, $serverWithSecretsAndLongHeaders, array('secret_cookie' => 'never-store'), 1000.25);
@@ -56,12 +56,12 @@ telemetry_assert($failures, 'secrets and query values are absent', strpos(json_e
 telemetry_assert($failures, 'unknown response status remains null', $record['response']['status'] === null);
 ```
 
-- [ ] **Step 2: Run the focused test and confirm RED because the four component classes do not exist.**
+- [x] **Step 2: Run the focused test and confirm RED because the four component classes do not exist.**
 
 Run: `C:/php-8.5.5/php.exe tests/telemetry-components-test.php`
 Expected: non-zero exit caused by missing production classes.
 
-- [ ] **Step 3: Implement only the bounded value objects, schema contract, configuration defaults, and local append/health behavior required by the test.**
+- [x] **Step 3: Implement only the bounded value objects, schema contract, configuration defaults, and local append/health behavior required by the test.**
 
 ```php
 $result = $store->append($event->toArray());
@@ -69,13 +69,13 @@ $result = $store->append($event->toArray());
 // array('written' => bool, 'dropped' => bool, 'reason' => string, 'duration_ms' => float)
 ```
 
-- [ ] **Step 4: Run the focused test and the PHP 5.6 static checker.**
+- [x] **Step 4: Run the focused test and the PHP 5.6 static checker.**
 
 Run: `C:/php-8.5.5/php.exe tests/telemetry-components-test.php`
 Run: `C:/php-8.5.5/php.exe tools/php56-check.php src/Telemetry src/Storage/LocalEventStore.php tests/telemetry-components-test.php`
 Expected: both exit 0 with no warnings.
 
-- [ ] **Step 5: Commit the task.**
+- [x] **Step 5: Commit the task.**
 
 ```text
 feat: add bounded schema 4 telemetry components
@@ -101,7 +101,7 @@ feat: add bounded schema 4 telemetry components
 - `Guard::start()` captures telemetry before invoking the provider exactly once; `Guard::filterOutput()` completes logging once after final HTML processing.
 - Existing `DecisionLogger::log($decision, $meta)` remains a bounded compatibility entry point but writes schema 4.
 
-- [ ] **Step 1: Write lifecycle/failure tests that catch no-ad omission, duplicate provider/counter evaluation, duplicate events, changed HTML, missing response metrics, and storage failures escaping into HTTP 500.**
+- [x] **Step 1: Write lifecycle/failure tests that catch no-ad omission, duplicate provider/counter evaluation, duplicate events, changed HTML, missing response metrics, and storage failures escaping into HTTP 500.**
 
 ```php
 $guard->start();
@@ -112,12 +112,12 @@ telemetry_assert($failures, 'no-ad request records exactly once', count($records
 telemetry_assert($failures, 'original body is unchanged', $capturedBody === '<!doctype html><p>no ads</p>');
 ```
 
-- [ ] **Step 2: Run the focused test and confirm RED because boot does not log no-ad requests and schema 4 coordination is absent.**
+- [x] **Step 2: Run the focused test and confirm RED because boot does not log no-ad requests and schema 4 coordination is absent.**
 
 Run: `C:/php-8.5.5/php.exe tests/telemetry-foundation-test.php`
 Expected: non-zero exit on the no-ad/schema assertions, with the fixture process still returning its original body.
 
-- [ ] **Step 3: Integrate start/final telemetry with minimal Guard and DecisionLogger changes; preserve detector and ad enforcement output behavior.**
+- [x] **Step 3: Integrate start/final telemetry with minimal Guard and DecisionLogger changes; preserve detector and ad enforcement output behavior.**
 
 ```php
 $this->telemetryEvent = $this->logger->beginRequest();
@@ -125,7 +125,7 @@ $decision = $this->getDecision(); // one mutating provider evaluation at request
 // At FINAL: process HTML, capture response, complete this same event once.
 ```
 
-- [ ] **Step 4: Run focused lifecycle and existing advertising regression tests.**
+- [x] **Step 4: Run focused lifecycle and existing advertising regression tests.**
 
 Run: `C:/php-8.5.5/php.exe tests/telemetry-foundation-test.php`
 Run: `C:/php-8.5.5/php.exe tests/ad-guard-test.php`
@@ -134,7 +134,7 @@ Run: `C:/php-8.5.5/php.exe tests/raw-ip-schema-test.php`
 Run: `C:/php-8.5.5/php.exe tests/adsense-correlation-test.php`
 Expected: all exit 0; no-ad and ad responses are byte-identical to fixtures.
 
-- [ ] **Step 5: Commit the task.**
+- [x] **Step 5: Commit the task.**
 
 ```text
 feat: record telemetry for every active request
@@ -158,7 +158,7 @@ feat: record telemetry for every active request
 - Consumers count skipped health/malformed/unsupported records separately and never include them in request totals.
 - Conversion adds source provenance but never rewrites source JSONL or upgrades legacy bot verification semantics.
 
-- [ ] **Step 1: Write mixed-log tests with literal schema 3, schema 4, versionless, health, malformed, unsupported, null-evidence, legacy verified, and advertising records.**
+- [x] **Step 1: Write mixed-log tests with literal schema 3, schema 4, versionless, health, malformed, unsupported, null-evidence, legacy verified, and advertising records.**
 
 ```php
 $result = $reader->read(array('date_mode' => 'all'), 1, 100);
@@ -167,12 +167,12 @@ compat_assert($failures, 'read diagnostics separate record types', $result['read
 compat_assert($failures, 'legacy verified is not FCrDNS pass', $schema3Row['fcrdns_status'] === null);
 ```
 
-- [ ] **Step 2: Run the focused test and confirm RED because readers consume only the flat layout and do not dispatch schemas.**
+- [x] **Step 2: Run the focused test and confirm RED because readers consume only the flat layout and do not dispatch schemas.**
 
 Run: `C:/php-8.5.5/php.exe tests/schema-compatibility-test.php`
 Expected: non-zero exit because schema 4 is skipped or misread and diagnostics are absent.
 
-- [ ] **Step 3: Add the shared normalizer and connect only the existing reader/analyzer/report paths needed for schema 4 parity.**
+- [x] **Step 3: Add the shared normalizer and connect only the existing reader/analyzer/report paths needed for schema 4 parity.**
 
 ```php
 $reason = '';
@@ -183,7 +183,7 @@ if ($normalized === null) {
 }
 ```
 
-- [ ] **Step 4: Run compatibility tests plus all existing reader/analyzer tests.**
+- [x] **Step 4: Run compatibility tests plus all existing reader/analyzer tests.**
 
 Run: `C:/php-8.5.5/php.exe tests/schema-compatibility-test.php`
 Run: `C:/php-8.5.5/php.exe tests/viewer-date-range-test.php`
@@ -193,7 +193,7 @@ Run: `C:/php-8.5.5/php.exe tests/behavior-analysis-test.php`
 Run: `C:/php-8.5.5/php.exe tests/adsense-correlation-test.php`
 Expected: all exit 0 with exact totals and no schema-based omissions or duplicates.
 
-- [ ] **Step 5: Run full verification, benchmark relevant Phase 1 paths, update state, and commit.**
+- [x] **Step 5: Run full verification, benchmark relevant Phase 1 paths, update state, and commit.**
 
 Run: `./tools/run-phase0-checks.ps1 -OutputPath docs/adguard/phase1/checks.json -Php C:/php-8.5.5/php.exe`
 Run: `./tools/phase0-benchmark.ps1 -OutputPath docs/adguard/phase1/http-benchmark.json -Php C:/php-8.5.5/php.exe`

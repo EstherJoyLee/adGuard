@@ -12,13 +12,14 @@
 - State template: 상위 `../docs/IMPLEMENTATION_STATE_TEMPLATE.md`를 복사하여 이 파일을 초기화함.
 - Document source: `C:/Users/User/Desktop/Template/AdGuard-Template/docs/`. 최초 첨부 경로의 하위 폴더는 현재 없으며, 같은 이름의 제공 문서들이 이 위치에 있음.
 - Priority: 설계 문서 → 이 파일의 현재 구현 상태 → 실제 코드/테스트 → 에이전트 추정. 설계 변경이 필요하면 `DECISION_NEEDED`로 기록하고 임의로 변경하지 않음.
-- Current phase: Phase 0 — Baseline Freeze & Audit 완료. Phase 1은 미시작.
-- Last completed phase: Phase 0 (2026-09-11). 측정은 2026-09-10, 최종 전체 검사는 2026-09-11에 수행.
-- Last verified commit: `af8ef336199e2ed7d1e5049afcf48e2c4ee9ec45` (Phase 0 결과). 원본 v1 baseline은 `24eeb2b5517eb3bf6c406708fd06aafa5a586f58`. D1은 이후 문서 변경이며 현재 실행 코드의 schema는 여전히 3이다.
-- Current branch/worktree: `main`, `C:/Users/User/Desktop/Template/AdGuard-Template/adguard`. 작성자는 사용자 제공 `EstherJoyLee <bonjourjj3@gmail.com>`으로 이 저장소에만 설정.
+- Current phase: Phase 1 — Telemetry Foundation 완료.
+- Last completed phase: Phase 1 (2026-09-11).
+- Last verified implementation/test commit: `f47bfc6` (`test: cover read-only telemetry storage`). Phase 1 실행 결과/상태 문서는 이 커밋 뒤에 추가하며 최종 commit은 `git log`로 확인한다. 원본 v1 baseline은 `24eeb2b5517eb3bf6c406708fd06aafa5a586f58`.
+- Current branch/worktree: `phase1-telemetry`, `C:/Users/User/Desktop/Template/AdGuard-Template/adguard/.worktrees/phase1-telemetry`. 작성자는 사용자 제공 `EstherJoyLee <bonjourjj3@gmail.com>`으로 이 저장소에만 설정.
 - Git remote: `origin = https://github.com/EstherJoyLee/adGuard.git`. 공개 전환 후 fetch 성공. 이번 단계는 로컬 커밋만 수행하며 push/upstream 설정은 없음.
-- Scope: Phase 0 감사/검증 완료 후 사용자 승인 D1을 문서에 반영. 신규 schema 4와 legacy 호환은 구현 계약이며 실행 코드 변경/Phase 1 착수는 아님.
+- Scope: Phase 1 telemetry 기반, schema 4 writer, schema 3/4/versionless 공통 read 변환 및 기존 reader/analyzer/report 최소 호환까지 구현. Phase 2 identity, Phase 3 behavior/risk, Phase 4 bot, Phase 5 UI, Phase 6 export는 선행하지 않음.
 - Phase 0 report: `docs/adguard/PHASE_0_BASELINE_REPORT.md`; 실행 결과는 `docs/adguard/phase0/`.
+- Phase 1 plan/results: `docs/superpowers/plans/2026-09-11-telemetry-foundation.md`; 실행 결과는 `docs/adguard/phase1/`.
 
 ## Immutable Constraints
 - PHP 5.6+ syntax compatibility
@@ -46,49 +47,51 @@
 - 한 번에 한 Phase만 수행. Phase 0은 별도 사용자 프롬프트 이후에만 시작하며, 현재 Phase 밖의 기능을 선행 구현하지 않음.
 
 ## Current Known Architecture
-- RequestTelemetry: 전용 v2 컴포넌트 없음. `adguard.php`의 boot는 `src/Guard.php`의 output buffer를 시작하며, 자동 HTML 경로는 광고 감지 뒤 decision/log를 실행함. 명시적 decision API 호출은 별도 경로임.
+- RequestTelemetry: `src/Telemetry/RequestTelemetry.php`가 활성 요청 시작 시 timestamp, 요청/네트워크/allowlist header/query key를 bounded capture. `src/Guard.php`가 광고 유무와 무관하게 capture 후 provider를 정확히 1회 평가하고 final output에서 같은 event를 완료함.
 - IdentityResolver: `engine/src/Identity/IpResolver.php`를 engine RequestContext와 DecisionLogger가 공유하지만 각각 engine/guard 설정을 전달함. viewer 접근제어는 REMOTE_ADDR를 직접 사용함.
 - RiskEngine: `engine/risk-engine.php`, `engine/src/Engine.php`, `engine/src/Scoring/ScoreCombiner.php` 및 rate_limit/visitor_rate/session_churn/user_agent 신호.
 - Bot Verification: `engine/src/KnownCrawlers/CrawlerVerifier.php`의 UA claim + 로컬 IP range 분류. `tools/refresh-crawler-ranges.php`가 별도 갱신 도구이며 v2 FCrDNS/RFC 9421 계층은 없음.
-- LocalEventStore: `src/DecisionLogger.php` JSONL과 `engine/src/Storage/FileStorage.php` 파일 상태. 전용 v2 LocalEventStore는 없음.
-- Viewer: `viewer.php`와 `src/LogReader.php`. 원본 IP 표시, 기간/필터/페이지 처리 및 actor bucket 상한이 이미 존재함. v2 전체 forensic UI로 간주하지 않음.
+- LocalEventStore: `src/Storage/LocalEventStore.php`가 schema 4 JSONL append, event/daily/health 크기 상한, 최대 2ms nonblocking lock, drop/health 결과, 요청당 최대 256 entry retention 검사를 담당. engine state는 기존 `engine/src/Storage/FileStorage.php` 유지.
+- Reader compatibility: `src/Telemetry/EventNormalizer.php`가 schema 3/schema 4/지원되는 versionless를 원본 변경 없이 기존 flat read model로 변환. provenance와 null을 보존하고 health/malformed/unsupported/invalid를 구분함. LogReader, RiskCorrelationAnalyzer, CLI report가 이를 공유함.
+- Viewer: `viewer.php`와 `src/LogReader.php`. Phase 1은 schema 호환만 연결했으며 v2 전체 forensic UI로 간주하지 않음.
 - Export: v2 `export.php` 없음. 기존 AdSense 보고서용 tools와 향후 중앙 telemetry export를 혼동하지 않음.
 - Central Collector: 현재 작업 폴더의 파일 tree에서 구현을 찾지 못함.
 - Dashboard: 현재 작업 폴더의 파일 tree에서 중앙 Dashboard 구현을 찾지 못함.
 - Tree 확인: 루트 `adguard.php`, `auto-prepend.php`, `viewer.php`, `README.md`; `config/`, `src/`, `engine/`, `storage/`, `tests/`, `tools/`, 기존 `docs/`와 신규 `docs/adguard/`. 적용할 AGENTS.md는 확인되지 않음.
 
 ## Current Schema Versions
-- event schema (실제 구현): 기존 decision JSONL은 `schema_version = 3` (`src/DecisionLogger.php:152`), logger health는 별도 record 종류의 `1` (`src/DecisionLogger.php:337`). 이번 문서 변경으로 writer가 바뀐 것은 아님.
-- event schema (승인된 목표 D1): AdGuard v2 신규 request event는 중첩 schema `4`. 기존 schema 3 원형 보존, 공통 읽기 변환, 단일 신규 기록. 설계 예시의 `2`는 `4`로 정정됨. 상세 계약은 Design §9.3.
-- rules: 현재 decision event에 별도 rule_version 없음. v2에서 추가 예정.
-- agent: 현재 decision event에 별도 agent version 없음. v2에서 추가 예정.
+- event schema (실제 구현): 신규 request JSONL은 중첩 `schema_version = 4`; logger health는 별도 `schema_version = 1`, `event_type = telemetry_health`. schema 3 파일은 다시 쓰지 않고 공통 변환기로 계속 읽음.
+- event identity: 요청마다 안정적인 `event_id`와 `request_id`. dual-write/counter duplicate 없음.
+- rules: schema 4 `agent.rule_version = legacy-v1`. Phase 3에서 risk rule 전환 전까지 현재 의미를 보존.
+- agent: schema 4 `agent.version = 2.0.0-phase1`.
 
 ## Tests / Verification
-- PHP lint: PHP 8.5.5에서 74개 PHP 파일 PASS. PHP 5.6 정적 검사 70개 파일에서 비호환 검출 0; checker self-test PASS. PHP 5.6 실제 런타임 미검증.
-- unit/integration tests: `tools/run-phase0-checks.ps1` 최종 23 PASS / 0 FAIL / 1 SKIP. 기존 테스트 18 PASS + 호스트 어댑터 미존재 1 SKIP, 신규 회귀 테스트 19 assertions PASS 및 boundary/static/lint/self-test 포함.
-- failure injection: 기존 동시성·state 실패/GC 검사 PASS. 실제 HTTP에서 state 경로를 파일로 막았을 때 monitor 응답 200·degraded=1·HTML 동일. 모든 failure matrix를 완료했다는 의미는 아님.
+- PHP lint: PHP 8.5.5에서 83개 PHP 파일 PASS. PHP 5.6 정적 검사 79개 파일에서 비호환 검출 0; checker self-test PASS. PHP 5.6 실제 런타임 미검증.
+- unit/integration tests: `tools/run-phase0-checks.ps1 -OutputPath docs/adguard/phase1/checks.json -Php C:/php-8.5.5/php.exe` 최종 26 PASS / 0 FAIL / 1 SKIP. SKIP은 저장소 외부 호스트 adapter fixture 부재이며 기존과 동일.
+- failure injection: malformed JSONL, oversized event/UA/header/HMAC key, read-only stream, directory unavailable, daily log fopen 실패, busy lock, daily byte cap, health byte cap, expired retention, state storage 실패를 검증. `tools/phase1-http-failure-test.ps1`에서 telemetry 경로를 파일로 막아도 HTTP 200 및 원문 body 유지. 예외가 application 응답으로 전파되지 않음.
 - performance baseline: `phase0/http-baseline.json`; PHP 8.5.5/Windows 내장 HTTP 서버, warmup 20 + 측정 200회/시나리오. 최소 페이지/비광고 guard/광고 markup/정상 광고 guard 비교. 모든 정상 표본 200·HTML 동일.
-- current performance: 정상 광고 guard PHP 계측 p50 2.087116ms, p95 5.529881ms, 평균 2.680072ms. HTTP 왕복 p50 3.2212ms/p95 6.9063ms. 최소 페이지 PHP 평균 0.002860ms. guard 광고 peak used memory p50 496256 bytes, allocator peak 2MiB. 운영 서버의 성능 보증은 아님.
+- current performance: `phase1/http-benchmark.json`, 동일한 PHP 8.5.5/Windows loopback 조건, warmup 20 + 200회. guard-no-ads PHP p50 2.154827ms/p95 5.038977ms/p99 5.879879ms, guard-ads p50 2.196074ms/p95 4.727840ms/p99 5.918980ms. guard-ads baseline p50 2.087116ms/p95 5.529881ms와 동등 범위이나, no-ad baseline p50 0.092983ms/p95 0.251055ms 대비 의도된 provider+telemetry 비용이 추가됨. HTML equality/200/failure probes PASS. 운영 서버 성능 보증은 아님.
 - Git: 원본 88개 파일을 `24eeb2b`로 고정. 원본 최초 staged diff에는 기존 공백/CRLF 경고 615개가 있어 `phase0/original-whitespace.json`에 기록. 원본 재포맷 없이 Phase 0 변경분은 별도로 diff 검사.
 - 문서 검증: 설계/계획/상태 문서 재독 완료. 2026-09-11 문서 폴더 소실 확인 후 Git 내부 snapshot으로 복원했으며 복원 직후 최초 88개 SHA-256이 전부 일치함. 소실 원인은 미확인.
-- 변경 범위 검증: `phase0/original-files.json` 기준 기존 84개 코드/테스트/설정/문서와 설계 원문 3개를 보존. 기존 파일 중 상태 문서만 갱신; 신규 테스트/fixture/검사·측정 도구/보고서 추가.
-- 독립 리뷰: 사용량 제한으로 실행 실패. 주 에이전트 직접 검토 및 실행 검증으로 마무리하며 독립 리뷰 완료를 주장하지 않음.
+- 변경 범위 검증: Phase 1 telemetry/reader와 관련 테스트·측정·문서만 변경. identity/bot/central/export/UI 구현 없음.
+- 독립 리뷰: Task 1, Task 2, Task 3 및 retention 보완을 별도 reviewer가 검사. health cap lock race, unbounded HMAC key read, retention 누락, 비정상 날짜 삭제 가능성을 수정한 뒤 모두 Approved.
 
 ## Current Risks / Open Issues
 - C1~C10은 부트스트랩에서 기록한 정적 근거이며 보존한다. Phase 0의 실제 재현/측정 결과는 위 Tests / Verification과 `PHASE_0_BASELINE_REPORT.md`에 추가했고, 확인된 v1 동작은 수정하지 않았다.
-- C1 — 광고 없는 요청 수집 누락 가능성: `src/Guard.php:175`의 자동 HTML 처리에서 비HTML 또는 광고 미감지이면 decision/log 전에 반환함. 설계 §1.1/§6/§26은 광고 유무와 무관한 요청 시작 telemetry를 요구함. 별도 decision API를 호출하는 통합은 Phase 0에서 구분해야 함.
-- C2 — UA 단독 광고 거부: `engine/src/Signals/UserAgentAnomalySignal.php`는 curl/wget 등의 UA에 40점을 부여하고 `src/Config.php:57`은 user_agent hard-deny 기준을 40으로 둠. `src/Guard.php:135`에서 연결됨. `tests/ad-guard-test.php:106`은 이 동작을 기대함. 설계 §12와 충돌하며, 현재 기본 monitor에서는 실제 광고 제거 대신 MONITOR_DENY가 기록되는 구조임.
+- C1 — RESOLVED IN PHASE 1: `Guard::start()`가 활성 요청 capture 후 provider를 한 번 평가하고 final output에서 같은 schema 4 event를 한 번 완료함. 광고 없는 HTML·비HTML도 request rate/telemetry 대상. `mode=off`와 excluded path는 기존 bypass 의미를 유지.
+- C2 — UA 단독 광고 거부: `engine/src/Signals/UserAgentAnomalySignal.php`는 curl/wget 등의 UA에 40점을 부여하고 `src/Config.php:57`은 user_agent hard-deny 기준을 40으로 둠. `src/Guard.php:354`의 `hardDenySignal()`에서 연결됨. `tests/ad-guard-test.php:106`은 이 동작을 기대함. 설계 §12와 충돌하며, 현재 기본 monitor에서는 실제 광고 제거 대신 MONITOR_DENY가 기록되는 구조임.
 - C3 — identity 설정/사용 불일치: `src/Config.php:33`과 `engine/src/Config.php:24`에 trusted_proxies가 따로 있고 logger는 guard 설정을, engine은 engine 설정을 사용함. `viewer.php:24`는 REMOTE_ADDR 직접 비교. 설계 §7.3/Phase 2의 단일 identity 적용 시 기존 접근제어와 호환성을 검토해야 함. resolver 구현 자체는 이미 공유하므로 중복 구현으로 단정하지 않음.
-- C4 — schema/증적 차이: `src/DecisionLogger.php:83`은 signal의 score/triggered/storage_degraded만 저장하여 상세 count/window/limit metrics가 빠짐. 현재 flat schema 3에는 설계 §9의 event_id, 별도 peer/client/forwarded chain, response status/duration 및 agent/rule version 구조가 없음. raw_ip와 bounded user_agent는 이미 저장하므로 masking-only 상태라고 기록하지 않음. `tests/raw-ip-schema-test.php:81`은 schema 3을 기대함. schema 번호/reader 전략 결정은 D1으로 해소됐으며 실제 구현 차이는 Phase 1 이후 순차 해소한다. 기존 assertion은 legacy fixture로 보존하고 신규 schema 4 검증을 추가한다.
+- C4 — RESOLVED FOR PHASE 1 CONTRACT: schema 4에 event/request identity, request/network/header, risk 상세 metrics, response status/duration/bytes, advertising, agent/rule/guard duration을 기록. schema 3/4/versionless 공통 read 호환과 provenance/null 의미를 검증. Phase 2 identity chain과 Phase 3 behavior, Phase 4 strict bot 값은 설계대로 아직 null.
 - C5 — crawler verified 의미 차이: `engine/src/KnownCrawlers/CrawlerVerifier.php:197`은 claim과 로컬 공식 range 일치만으로 verified를 반환함. 설계 §10은 모든 claim의 out-of-band FCrDNS와 strict levels를 요구함. 기존 verified는 곧바로 v2 자동 allowlist 자격이 되지 않음. 현재 분류 metadata가 실제 자동 allowlist를 수행한다고 단정하지 않음.
-- C6 — 요청 자원 상한: `engine/src/Storage/FileStorage.php:96`의 gc는 재귀 순회이며 `engine/src/Engine.php:63`에서 요청 중 확률적으로 호출됨. 순회 개수/시간 budget이 보이지 않음. `src/DecisionLogger.php:317`도 로그 glob으로 retention 정리. 설계 §22의 bounded cleanup과 차이가 있음. 기존 TTL/일일 로그 크기 제한이 없다는 의미는 아님.
-- C7 — health 로그 lock 대기: 주 decision append는 non-blocking lock이지만 `src/DecisionLogger.php:343`의 health append는 `FILE_APPEND | LOCK_EX`를 사용하고 별도 timeout이 없음. lock 실패 보고 경로가 설계 §22의 짧은 lock/drop 원칙을 충족하는지 후속 검증 필요.
-- C8 — 장애 시 광고 정책: `src/Config.php:91`의 fail_closed/fail_closed_on_storage_degraded와 `src/Guard.php:125`는 enforce에서 엔진/스토리지 장애만으로 광고를 억제할 수 있음. `tests/ad-guard-test.php:120` 및 `:128`도 이 동작을 기대함. 설계 §4/§13의 fail-open·정상 UX 우선과 적용 범위를 확인해야 함. 페이지 전체 차단이나 500 발생을 확인한 것은 아님. `DECISION_NEEDED`: 광고 정책의 장애 처리 범위는 구현 단계 전에 명확히 하고 현재 동작은 보존.
-- C9 — 위험 등급 이름: `engine/src/Verdict.php:13`과 `src/LogReader.php:468`은 NORMAL/ELEVATED/SUSPICIOUS/SEVERE를 사용함. 설계 §12의 NORMAL/OBSERVE/HIGH_RISK/SEVERE로 전환 시 기존 로그/필터/정책 호환성 검토 필요.
+- C6 — PARTIALLY RESOLVED: LocalEventStore는 event/daily/health byte cap, lock timeout, 최대 512 entry retention scan 상한을 가짐. `engine/src/Storage/FileStorage.php:96`의 request-time 재귀 GC에는 여전히 개수/시간 budget이 없어 Phase 3 state 작업에서 해소 필요.
+- C7 — RESOLVED IN PHASE 1: 주 event는 최대 2ms nonblocking retry, exceptional health는 즉시 nonblocking lock. 실패는 bounded counter/result 후 drop하며 응답으로 전파하지 않음. health 파일 크기도 lock 안에서 다시 확인.
+- C8 — 장애 시 광고 정책: `src/Config.php:91`의 fail_closed/fail_closed_on_storage_degraded와 `src/Guard.php:142`는 enforce에서 엔진/스토리지 장애만으로 광고를 억제할 수 있음. `tests/ad-guard-test.php:120` 및 `:128`도 이 동작을 기대함. 설계 §4/§13의 fail-open·정상 UX 우선과 적용 범위를 확인해야 함. 페이지 전체 차단이나 500 발생을 확인한 것은 아님. `DECISION_NEEDED`: 광고 정책의 장애 처리 범위는 구현 단계 전에 명확히 하고 현재 동작은 보존.
+- C9 — 위험 등급 이름: `engine/src/Verdict.php:13`과 `src/LogReader.php:490`은 NORMAL/ELEVATED/SUSPICIOUS/SEVERE를 사용함. 설계 §12의 NORMAL/OBSERVE/HIGH_RISK/SEVERE로 전환 시 기존 로그/필터/정책 호환성 검토 필요.
 - C10 — 예상 경로 차이: 설계 §25의 `engine/src/CrawlerVerifier.php` 실제 경로는 `engine/src/KnownCrawlers/CrawlerVerifier.php`이며 `config/engine.php` 대신 `config/engine.php.example`만 존재함. 설계가 요구하는 실제 tree 재확인에 따라 향후 수정 경로를 확정할 것. 원문은 수정하지 않음.
 - C11 — README 개인정보 설명 불일치 확정: `README.md:170`은 raw IP/full UA 미저장을 설명하지만 schema 3 실제 기록은 raw IP와 최대 1024-byte UA를 보존함. 원문은 이번 단계에서 수정하지 않음.
 - C12 — storage 접근 차단의 서버 의존성: 기존 Apache/IIS 규칙과 합성 JSONL을 PHP 내장 서버 docroot에 배치하면 HTTP 200으로 보임. 운영 서버의 실제 보호 여부는 미검증이며 별도 설정 확인 필요.
-- 환경 상태 — 로컬 baseline commit 생성 완료. 실제 PHP 5.6 검증은 남아 있으며 호스트 어댑터는 저장소 밖이라 해당 통합 테스트가 SKIP됨. 원격 push는 수행하지 않음.
+- C13 — Phase 1 no-ad overhead: 동일 합성 loopback에서 no-ad p95가 0.251055ms에서 5.038977ms로 증가. 광고와 무관한 provider/counter/event 생성이라는 승인된 요구의 직접 비용이며, 실제 운영 traffic/파일시스템에서 monitor-only 관측 후 Phase 3/8 성능 작업의 입력으로 사용해야 함. 신규 5xx나 HTML 차이는 측정되지 않음.
+- 환경 상태 — 실제 PHP 5.6 런타임 검증은 남아 있으며 호스트 어댑터는 저장소 밖이라 해당 통합 테스트가 SKIP됨. 원격 push는 수행하지 않음.
 
 ## Approved Design Deviations
 - D1 — 2026-09-11 사용자 승인: 설계 §9 예시의 schema 2를 신규 schema 4로 정정. 제품은 AdGuard v2 유지. 기존 schema 3 파일/의미를 보존하며 공통 읽기 변환 계층을 사용한다.
@@ -96,23 +99,20 @@
 - 미수집 null, 원본 출처/광고 증적 보존, 기존 verified의 FCrDNS PASS 승격 금지, 신규 request 단일 기록을 계약으로 확정. 기존 v1의 다른 설계 차이는 승인된 deviation으로 간주하지 않는다.
 
 ## Files Changed In Current Phase
-- `tests/phase0-baseline-test.php` — v1 public boot/counter/event/UA/proxy/schema/민감정보 회귀 검증.
-- `tests/fixtures/phase0-page.php` — loopback/env opt-in HTTP 측정·실패 probe fixture.
-- `tools/run-phase0-checks.ps1` — 전체 검사/30초 timeout/결과 JSON.
-- `tools/phase0-benchmark.ps1` — 임시 서버/합성 client/latency·memory 및 HTTP probe.
-- `docs/adguard/PHASE_0_AUDIT_PLAN.md`, `docs/adguard/PHASE_0_BASELINE_REPORT.md` — 실행 계획 및 감사 보고서.
-- `docs/adguard/phase0/original-files.json`, `checks-initial.json`, `checks.json`, `http-baseline.json`, `original-whitespace.json` — 기준 해시/실행 결과/측정 원자료/기존 공백 경고.
-- `docs/adguard/IMPLEMENTATION_STATE.md` — 현재 상태와 Phase History 갱신.
-- Production code changed: NO.
+- 신규 telemetry/store: `src/Telemetry/RequestTelemetry.php`, `ResponseTelemetry.php`, `TelemetryEvent.php`, `EventNormalizer.php`, `src/Storage/LocalEventStore.php`.
+- lifecycle/writer: `src/Guard.php`, `src/DecisionLogger.php`, `src/Config.php`, `config/guard.php`.
+- schema read compatibility: `src/LogReader.php`, `src/RiskCorrelationAnalyzer.php`, `tools/report.php`.
+- 신규 tests/fixture: `tests/telemetry-components-test.php`, `tests/telemetry-foundation-test.php`, `tests/schema-compatibility-test.php`, `tests/fixtures/telemetry-page.php`, `tools/phase1-http-failure-test.ps1`.
+- 갱신 regression tests: `tests/phase0-baseline-test.php`, `tests/raw-ip-schema-test.php`, `tests/adsense-correlation-test.php`.
+- plan/schema/results: `docs/superpowers/plans/2026-09-11-telemetry-foundation.md`, `docs/adguard/SCHEMA_4_FIELD_MAP.md`, `docs/adguard/phase1/checks.json`, `docs/adguard/phase1/http-benchmark.json`, 이 상태 문서.
+- measurement utility: `tools/phase0-benchmark.ps1`에 문서화된 `-Php` 인자를 추가. 측정 로직/시나리오는 동일.
 
 ## Next Phase Preconditions
-- Phase 0 완료, schema/legacy 호환 결정 D1 승인 및 문서 반영. Phase 1 구현은 별도 프롬프트 이후 시작.
-- 먼저 설계, 이 파일, `PHASE_0_BASELINE_REPORT.md`, 계획의 Phase 1 및 공통 Context Lock을 읽기.
-- schema 번호/reader 전략에 대한 재승인은 필요 없음. Phase 1에서 Design §9.3에 따라 필드 매핑/타입/상한/nullable과 fixture를 고정한다. fail_closed 정책 해석은 관련 정책 구현 전에 결정하며 이번 D1으로 해소됐다고 간주하지 않는다.
-- Phase 1 신규 예상: `src/Telemetry/RequestTelemetry.php`, `src/Telemetry/ResponseTelemetry.php`, `src/Telemetry/TelemetryEvent.php`, `src/Storage/LocalEventStore.php`, `tests/telemetry-foundation-test.php`.
-- Phase 1 수정 후보: `adguard.php`, `src/Guard.php`, `src/DecisionLogger.php`, `src/Config.php`, `config/guard.php`. 상세 테스트 영향 목록은 보고서 §8 참조.
-- D1 추가 범위: 공통 읽기 변환 계층(정확한 신규 파일명은 Phase 1에서 기존 convention에 맞춰 확정), `src/LogReader.php`, `src/RiskCorrelationAnalyzer.php`, `tools/report.php`, 관련 reader/report 테스트 및 schema 3/4 혼합 fixture. 신규 event 조회 누락/중복 방지에 필요한 호환만 구현.
-- v1 결함을 고정한 회귀 assertion은 의도된 Phase 변경만 반영하고 HTML 보존 등 정상 동작 검증은 유지. identity/bot/중앙 export/UI 선행 구현 금지.
+- Phase 1 완료 및 D1 구현 완료. 다음 작업은 별도 Phase 2 프롬프트 이후에만 시작.
+- 먼저 DESIGN 전체, IMPLEMENTATION_PLAN의 Phase 2, 이 파일 전체, `SCHEMA_4_FIELD_MAP.md`, Phase 1 checks/benchmark를 읽고 git status/diff와 현재 테스트를 확인.
+- Phase 2 목표는 one IdentityResolver, trusted proxy 처리, peer/client IP 분리, forwarded chain, resolution reason, guard/engine identity config 통합. viewer/logger/risk engine이 같은 client identity를 사용해야 함.
+- Phase 1 schema 4 writer와 schema 3 read 의미, event/request ID, null/provenance, no-ad 1회 기록, fail-open storage behavior를 회귀로 고정.
+- Phase 3 behavior/risk와 UA hard deny 제거, Phase 4 FCrDNS/RFC 9421, Phase 5 UI, Phase 6 export를 선행하지 않음. C8 장애 시 광고 정책은 관련 Phase 전에 DECISION_NEEDED 상태 유지.
 - PHP 5.6 실제 런타임, 실제 배포 서버 storage 차단 및 운영 latency는 후속 검증 대상.
 
 ---
@@ -165,3 +165,14 @@
 - Verification: 문서 간 D1/schema 4/Phase 경계 일치와 `git diff --check` 확인. 문서만 변경하여 PHP 테스트/lint 및 성능 측정은 재실행하지 않음. 기존 Phase 0 검사 결과를 이번 실행 결과로 주장하지 않음.
 - Remaining risk: schema 4/호환 계층은 아직 미구현. C8 fail_closed 정책 범위와 PHP 5.6 실제 런타임 등 기존 미결 항목 유지.
 - Next handoff: 별도 Phase 1 프롬프트. schema 결정은 완료됐으므로 같은 승인을 다시 묻지 않음.
+
+## Phase 1 — Telemetry Foundation — 2026-09-11
+- Goal: 광고 유무와 관계없는 active PHP request telemetry, schema 4 단일 writer, bounded fail-open LocalEventStore, schema 3/4/versionless read compatibility 구축.
+- Commits: `b22a194` 실행계획, `9b6163e` telemetry components, `b73bce6` health/key bounds, `5368249` request lifecycle, `65766da` shared reader, `eeebde1` bounded retention, `485e084` strict retention date validation, `f47bfc6` read-only injection. 최종 상태/결과 commit은 `git log`로 확인.
+- Result: RequestTelemetry/ResponseTelemetry/TelemetryEvent/LocalEventStore/EventNormalizer 구현. 활성 no-ad 요청도 provider/counter/event 각 1회. 광고 HTML 회귀 동일. schema 3 원본 무변경, schema 4 신규 저장, legacy verified를 strict bot/FCRDNS로 승격하지 않음.
+- Tests: 최종 전체 검증 기준 26 PASS/0 FAIL/1 SKIP, PHP lint 83 files, PHP 5.6 static 79 files. focused lifecycle/schema/failure tests 모두 PASS. 결과는 `phase1/checks.json`.
+- Failure behavior: directory/open/lock/size/health/retention/malformed 실패는 bounded drop. 별도 실제 HTTP telemetry 저장 경로 실패 주입에서 200 및 원문 body 유지.
+- Performance: 200회 loopback에서 guard-no-ads PHP p50/p95/p99 2.154827/5.038977/5.879879ms, guard-ads 2.196074/4.727840/5.918980ms. 결과는 `phase1/http-benchmark.json`; no-ad 비용 증가 C13 기록.
+- Reviews: 네 구현 묶음 모두 독립 reviewer 최종 Approved. 발견된 health cap race, HMAC unbounded read, retention 누락, invalid date deletion을 수정 후 재검토.
+- Design deviations: D1 그대로 구현. 그 외 신규 deviation 없음. 기존 C2/C3/C5/C8/C9/C10/C11/C12 및 C6 engine GC 부분은 후속 Phase 위험으로 보존.
+- Next handoff: Phase 2 별도 프롬프트. identity만 구현하고 behavior/risk/bot/UI/export를 선행하지 말 것.
