@@ -286,6 +286,8 @@ $retentionDir = $base . '/retention-logs';
 $expiredLog = $retentionDir . '/ad-guard-2000-01-01.jsonl';
 file_put_contents($expiredLog, "{}\n");
 file_put_contents($retentionDir . '/unrelated-file.txt', 'keep');
+$invalidDateLog = $retentionDir . '/ad-guard-2000-99-99.jsonl';
+file_put_contents($invalidDateLog, "{}\n");
 $retentionConfig = telemetry_component_config($base, array(
     'logging' => array('path' => $retentionDir, 'retention_days' => 1),
     'telemetry' => array('retention_scan_limit' => 16),
@@ -295,7 +297,8 @@ $retentionResult = $retentionStore->append($record);
 telemetry_component_assert($failures, 'bounded retention removes expired event logs only',
     $retentionResult['written'] === true
     && !file_exists($expiredLog)
-    && is_file($retentionDir . '/unrelated-file.txt'));
+    && is_file($retentionDir . '/unrelated-file.txt')
+    && is_file($invalidDateLog));
 
 telemetry_component_remove_tree($base);
 

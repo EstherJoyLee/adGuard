@@ -212,6 +212,9 @@ class LocalEventStore
                 || !preg_match('/^ad-guard-(\d{4})-(\d{2})-(\d{2})(?:-health)?\.jsonl$/D', $item->getFilename(), $match)) {
                 continue;
             }
+            if (!checkdate((int)$match[2], (int)$match[3], (int)$match[1])) {
+                continue;
+            }
             $stamp = @gmmktime(23, 59, 59, (int)$match[2], (int)$match[3], (int)$match[1]);
             if ($stamp !== false && $stamp < $cutoff) {
                 @unlink($item->getPathname());
