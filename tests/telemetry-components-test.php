@@ -247,6 +247,40 @@ telemetry_component_assert($failures, 'drop and storage error counters are reque
     && $lockHealth['storage_error_count'] === 1
     && $lockHealth['last_error'] === 'lock_busy');
 
+$healthCapDir = $base . '/health-cap-logs';
+@mkdir($healthCapDir, 0700, true);
+$healthCapConfig = telemetry_component_config($base, array(
+    'logging' => array('path' => $healthCapDir, 'health_max_daily_bytes' => 512),
+    'telemetry' => array('max_event_bytes' => 1024),
+));
+$healthCapStore = new \AdGuard\Storage\LocalEventStore($healthCapConfig);
+for ($i = 0; $i < 20; $i++) {
+    $healthCapStore->append($oversized);
+}
+$healthFiles = glob($healthCapDir . '/ad-guard-*-health.jsonl');
+$healthSize = is_array($healthFiles) && count($healthFiles) === 1 ? filesize($healthFiles[0]) : 0;
+telemetry_component_assert($failures, 'configured health byte cap is enforced on the bytes written',
+    $healthSize > 0 && $healthSize <= 512);
+
+$oversizedKeyPath = $base . '/oversized-hmac-key';
+file_put_contents($oversizedKeyPath, str_repeat('K', 4096));
+$oversizedKeyConfig = telemetry_component_config($base, array(
+    'logging' => array(
+        'path' => $base . '/oversized-key-logs',
+        'hmac_key' => '',
+        'hmac_key_path' => $oversizedKeyPath,
+    ),
+));
+$oversizedKeyRequest = new \AdGuard\Telemetry\RequestTelemetry(
+    $oversizedKeyConfig,
+    array('REMOTE_ADDR' => '198.51.100.9', 'REQUEST_URI' => '/', 'REQUEST_METHOD' => 'GET'),
+    array(),
+    1000.0
+);
+$oversizedKeyNetwork = $oversizedKeyRequest->toArray();
+telemetry_component_assert($failures, 'oversized HMAC key file is rejected by a bounded read',
+    $oversizedKeyNetwork['network']['ip_hmac'] === '');
+
 telemetry_component_remove_tree($base);
 
 if ($failures) {

@@ -121,17 +121,7 @@ class LocalEventStore
     private function writeHealth($path, $reason, $durationMs)
     {
         $file = rtrim($path, '/\\') . '/ad-guard-' . gmdate('Y-m-d') . '-health.jsonl';
-        $max = max(8192, min(8388608, (int)$this->config->get('logging.health_max_daily_bytes', 1048576)));
-        if (is_file($file) && @filesize($file) >= $max) {
-            return;
-        }
-        $handle = @fopen($file, 'ab');
-        if ($handle === false || !@flock($handle, LOCK_EX | LOCK_NB)) {
-            if ($handle !== false) {
-                @fclose($handle);
-            }
-            return;
-        }
+        $max = max(256, min(8388608, (int)$this->config->get('logging.health_max_daily_bytes', 1048576)));
         $event = json_encode(array(
             'schema_version' => 1,
             'event_type' => 'telemetry_health',
@@ -141,8 +131,23 @@ class LocalEventStore
             'storage_error_count' => $this->health['storage_error_count'],
             'telemetry_write_duration_ms' => max(0.0, min(60000.0, (float)$durationMs)),
         ), JSON_UNESCAPED_SLASHES);
-        if ($event !== false && strlen($event) <= 1024) {
-            @fwrite($handle, $event . "\n");
+        if ($event === false || strlen($event) > 1024) {
+            return;
+        }
+        $payload = $event . "\n";
+        $handle = @fopen($file, 'ab');
+        if ($handle === false || !@flock($handle, LOCK_EX | LOCK_NB)) {
+            if ($handle !== false) {
+                @fclose($handle);
+            }
+            return;
+        }
+        // Size is authoritative only while holding the writer lock. This
+        // second check keeps concurrent failures under the configured cap.
+        $stat = @fstat($handle);
+        $size = is_array($stat) && isset($stat['size']) ? (int)$stat['size'] : 0;
+        if ($size + strlen($payload) <= $max) {
+            @fwrite($handle, $payload);
             @fflush($handle);
         }
         @flock($handle, LOCK_UN);

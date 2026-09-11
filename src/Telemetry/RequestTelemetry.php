@@ -214,15 +214,14 @@ class RequestTelemetry
     {
         $configured = (string)$config->get('logging.hmac_key', '');
         if ($configured !== '') {
-            return $configured;
+            return strlen($configured) <= 256 ? $configured : '';
         }
         $path = (string)$config->get('logging.hmac_key_path', '');
         if ($path === '') {
             return '';
         }
         if (is_file($path)) {
-            $existing = @file_get_contents($path);
-            return is_string($existing) ? trim($existing) : '';
+            return $this->readHmacKey($path);
         }
         $directory = dirname($path);
         if ($directory === '' || $directory === '.' || (!is_dir($directory) && !@mkdir($directory, 0700, true))) {
@@ -238,8 +237,22 @@ class RequestTelemetry
                 return $key;
             }
         }
-        $existing = @file_get_contents($path);
-        return is_string($existing) ? trim($existing) : '';
+        return $this->readHmacKey($path);
+    }
+
+    /** Read one small key only; a configured file can never consume unbounded memory. */
+    private function readHmacKey($path)
+    {
+        $handle = @fopen($path, 'rb');
+        if ($handle === false) {
+            return '';
+        }
+        $value = @fread($handle, 257);
+        @fclose($handle);
+        if (!is_string($value) || strlen($value) > 256) {
+            return '';
+        }
+        return trim($value);
     }
 
     private function hashIdentifier($value, $key)
