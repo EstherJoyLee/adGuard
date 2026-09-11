@@ -18,6 +18,10 @@ class Guard
     private $buffer = '';
     private $externalSuppression = '';
     private $analyticsContext = array();
+    private $telemetryEvent = null;
+    private $telemetryStartedAt = null;
+    private $guardDurationMs = 0.0;
+    private $responseMeta = array();
 
     public function __construct(Config $config, $decisionProvider, $logger = null, $detector = null)
     {
@@ -32,8 +36,21 @@ class Guard
         if ($this->started || !$this->isActive() || $this->isExcludedPath()) {
             return false;
         }
+        $guardStartedAt = microtime(true);
+        $this->telemetryStartedAt = $guardStartedAt;
         $this->started = true;
+        if (is_object($this->logger) && method_exists($this->logger, 'beginRequest')) {
+            try {
+                $this->telemetryEvent = $this->logger->beginRequest(null, null, $guardStartedAt);
+            } catch (\Exception $exception) {
+                $this->telemetryEvent = null;
+            }
+        }
+        // The provider owns request counters, so it must run for every active
+        // PHP request even when the final response contains no advertising.
+        $this->getDecision();
         ob_start(array($this, 'filterOutput'));
+        $this->guardDurationMs += max(0.0, (microtime(true) - $guardStartedAt) * 1000.0);
         return true;
     }
 
@@ -168,18 +185,24 @@ class Guard
 
         $html = $this->buffer;
         $this->buffer = '';
-        return $this->processHtml($html, $this->responseContentType());
+        $guardStartedAt = microtime(true);
+        $result = $this->processHtml($html, $this->responseContentType());
+        $this->guardDurationMs += max(0.0, (microtime(true) - $guardStartedAt) * 1000.0);
+        $this->finishTelemetry($result);
+        return $result;
     }
 
     /** Public for deterministic integration tests and non-buffer adapters. */
     public function processHtml($html, $contentType = 'text/html')
     {
         if (!$this->isHtmlContentType($contentType)) {
+            $this->responseMeta = $this->emptyResponseMeta();
             return $html;
         }
 
         $detected = $this->adOpportunity || $this->detector->containsAdsense($html);
         if (!$detected) {
+            $this->responseMeta = $this->emptyResponseMeta();
             return $html;
         }
 
@@ -194,28 +217,75 @@ class Guard
             }
         }
 
-        if (!$this->logged) {
+        // "Was a runnable bootstrap actually delivered?" is what an
+        // operator needs from this log -- not just what this package decided.
+        $finalBootstrapCount = $this->detector->bootstrapCount($result);
+        $bootstrapPresent = $finalBootstrapCount > 0;
+        $policySuppressed = !$bootstrapPresent && (
+            ($this->config->get('mode', 'enforce') === 'enforce' && empty($decision['ads_allowed']))
+            || $this->externalSuppression !== ''
+        );
+        $this->responseMeta = array_merge($this->analyticsContext, array(
+            'ad_opportunity' => $this->adOpportunity || $detected,
+            'adsense_detected' => $detected,
+            'bootstrap_removed' => $removed,
+            'external_suppression' => $this->externalSuppression,
+            'ads_served' => $bootstrapPresent,
+            'ad_delivery' => $this->adDelivery($inventory, $finalBootstrapCount, $policySuppressed),
+        ));
+
+        // Non-buffer adapters retain the compatibility logging behavior.
+        if (!$this->started && !$this->logged) {
             $this->logged = true;
-            // "Was a runnable bootstrap actually delivered?" is what an
-            // operator needs from this log -- not just what this package
-            // decided. A response can end up ad-free because the guard
-            // stripped it, OR because the integration never emitted it.
-            $finalBootstrapCount = $this->detector->bootstrapCount($result);
-            $bootstrapPresent = $finalBootstrapCount > 0;
-            $policySuppressed = !$bootstrapPresent && (
-                ($this->config->get('mode', 'enforce') === 'enforce' && empty($decision['ads_allowed']))
-                || $this->externalSuppression !== ''
-            );
-            $this->logger->log($decision, array_merge($this->analyticsContext, array(
-                'adsense_detected' => $detected,
-                'bootstrap_removed' => $removed,
-                'external_suppression' => $this->externalSuppression,
-                'ads_served' => $bootstrapPresent,
-                'ad_delivery' => $this->adDelivery($inventory, $finalBootstrapCount, $policySuppressed),
-            )));
+            try {
+                $this->logger->log($decision, $this->responseMeta);
+            } catch (\Exception $exception) {
+                // Telemetry is always fail-open for the application response.
+            }
         }
 
         return $result;
+    }
+
+    private function finishTelemetry($result)
+    {
+        if ($this->logged) {
+            return;
+        }
+        $this->logged = true;
+        if (!is_object($this->logger) || !method_exists($this->logger, 'completeRequest') || $this->telemetryEvent === null) {
+            return;
+        }
+        $status = http_response_code();
+        $status = is_int($status) ? $status : null;
+        $durationMs = $this->telemetryStartedAt === null
+            ? null
+            : max(0.0, (microtime(true) - $this->telemetryStartedAt) * 1000.0);
+        try {
+            $this->logger->completeRequest(
+                $this->telemetryEvent,
+                $this->getDecision(),
+                $this->responseMeta,
+                $status,
+                $durationMs,
+                strlen((string)$result),
+                $this->guardDurationMs
+            );
+        } catch (\Exception $exception) {
+            // A write or adapter failure cannot alter the host application.
+        }
+    }
+
+    private function emptyResponseMeta()
+    {
+        return array_merge($this->analyticsContext, array(
+            'ad_opportunity' => $this->adOpportunity,
+            'adsense_detected' => false,
+            'bootstrap_removed' => 0,
+            'external_suppression' => $this->externalSuppression,
+            'ads_served' => false,
+            'ad_delivery' => $this->adDelivery(array(), 0, $this->externalSuppression !== ''),
+        ));
     }
 
     /**

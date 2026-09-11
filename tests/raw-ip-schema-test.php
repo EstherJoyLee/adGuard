@@ -1,6 +1,6 @@
 <?php
 /**
- * Contract test for the v3 audit boundary: raw client IP is retained beside
+ * Contract test for the schema 4 audit boundary: raw client IP is retained beside
  * canonical/HMAC forms, and forwarded headers are accepted only from a
  * configured trusted proxy.
  */
@@ -76,17 +76,17 @@ if (is_array($files)) {
         }
     }
 }
-raw_ip_schema_assert($failures, 'three v3 records were written', count($records) === 3);
+raw_ip_schema_assert($failures, 'three schema 4 records were written', count($records) === 3);
 if (count($records) === 3) {
-    raw_ip_schema_assert($failures, 'schema version is v3', $records[0]['schema_version'] === 3);
-    raw_ip_schema_assert($failures, 'raw IP preserves direct peer', $records[0]['raw_ip'] === '198.51.100.7');
-    raw_ip_schema_assert($failures, 'untrusted XFF does not change canonical IP', $records[0]['ip_canonical'] === '198.51.100.7');
-    raw_ip_schema_assert($failures, 'trusted XFF selects client address', $records[1]['raw_ip'] === '198.51.100.8');
-    raw_ip_schema_assert($failures, 'mapped IPv6 canonicalizes to IPv4', $records[2]['ip_canonical'] === '198.51.100.8');
-    raw_ip_schema_assert($failures, 'IP HMAC is retained beside raw IP', $records[1]['ip_hmac'] === hash_hmac('sha256', '198.51.100.8', 'test-hmac-key'));
-    raw_ip_schema_assert($failures, 'mapped IPv6 shares the canonical IP HMAC', $records[2]['ip_hmac'] === $records[1]['ip_hmac']);
-    raw_ip_schema_assert($failures, 'full user agent is retained', strpos($records[0]['user_agent'], 'Chrome/120.0') !== false);
-    raw_ip_schema_assert($failures, 'request is classified as an ad opportunity document', $records[0]['request_type'] === 'document' && $records[0]['ad_opportunity'] === true);
+    raw_ip_schema_assert($failures, 'schema version is 4', $records[0]['schema_version'] === 4);
+    raw_ip_schema_assert($failures, 'raw IP preserves direct peer', $records[0]['network']['raw_ip'] === '198.51.100.7');
+    raw_ip_schema_assert($failures, 'untrusted XFF does not change canonical IP', $records[0]['network']['client_ip'] === '198.51.100.7');
+    raw_ip_schema_assert($failures, 'trusted XFF selects client address', $records[1]['network']['raw_ip'] === '198.51.100.8');
+    raw_ip_schema_assert($failures, 'mapped IPv6 canonicalizes to IPv4', $records[2]['network']['client_ip'] === '198.51.100.8');
+    raw_ip_schema_assert($failures, 'IP HMAC is retained beside raw IP', $records[1]['network']['ip_hmac'] === hash_hmac('sha256', '198.51.100.8', 'test-hmac-key'));
+    raw_ip_schema_assert($failures, 'mapped IPv6 shares the canonical IP HMAC', $records[2]['network']['ip_hmac'] === $records[1]['network']['ip_hmac']);
+    raw_ip_schema_assert($failures, 'full user agent is retained', strpos($records[0]['headers']['user_agent'], 'Chrome/120.0') !== false);
+    raw_ip_schema_assert($failures, 'request is classified as an ad opportunity document', $records[0]['request']['request_type'] === 'document' && $records[0]['advertising']['ad_opportunity'] === true);
 }
 
 foreach (array($configPath, $base . '/hmac-key') as $file) {

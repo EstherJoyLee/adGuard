@@ -1,5 +1,5 @@
 <?php
-/** Characterization of v1, not acceptance tests for future v2 behavior. */
+/** Phase 0 characterization retained around the intentional Phase 1 telemetry migration. */
 require_once dirname(__DIR__) . '/adguard.php';
 require_once dirname(__DIR__) . '/engine/risk-engine.php';
 
@@ -98,12 +98,12 @@ try {
     ob_start();
     $booted = ad_guard_boot();
     echo $plain;
-    $noStateBeforeResponse = !is_dir($base . '/state') && !is_dir($base . '/logs');
+    $providerRanBeforeResponse = is_dir($base . '/state') && !is_dir($base . '/logs');
     ob_end_flush();
     $body = ob_get_clean();
-    p0_assert('public boot starts buffering without executing engine/log writes', $booted && $noStateBeforeResponse);
+    p0_assert('public boot captures telemetry and evaluates the provider before application output', $booted && $providerRanBeforeResponse);
     p0_assert('booted no-ad page is byte-identical', $body === $plain);
-    p0_assert('booted no-ad response creates neither counter files nor event', !is_dir($base . '/state') && count(p0_records($base . '/logs')) === 0);
+    p0_assert('booted no-ad response creates one counter update and one schema 4 event', is_dir($base . '/state') && count(p0_records($base . '/logs')) === 1);
 
     $provider = function () { return risk_engine_evaluate(); };
     $guardConfig = \AdGuard\Config::load($base . '/guard.php');
@@ -111,17 +111,17 @@ try {
     p0_assert('normal ad page stays byte-identical in monitor', $guard->processHtml($ad) === $ad);
     $decision = $guard->getDecision();
     $records = p0_records($base . '/logs');
-    p0_assert('ad page increments engine rate counter exactly once', $decision['signals']['rate_limit']['metrics']['window_10s']['count'] === 1);
-    p0_assert('ad page creates one event, repeated processing does not duplicate it', count($records) === 1 && $guard->processHtml($ad) === $ad && count(p0_records($base . '/logs')) === 1);
-    $record = $records[0];
+    p0_assert('ad page increments engine rate counter exactly once after the no-ad request', $decision['signals']['rate_limit']['metrics']['window_10s']['count'] === 2);
+    p0_assert('ad page creates one event, repeated processing does not duplicate it', count($records) === 2 && $guard->processHtml($ad) === $ad && count(p0_records($base . '/logs')) === 2);
+    $record = $records[1];
     $storage = new \RiskEngine\Storage\FileStorage($base . '/state');
     p0_assert('engine uses untrusted-proxy peer bucket', isset($storage->read('rate:203.0.113.10')['windows']));
-    p0_assert('guard logger independently trusts XFF and records a different client', $record['raw_ip'] === '198.51.100.8' && $storage->read('rate:198.51.100.8') === array());
-    p0_assert('v1 event uses flat schema 3 and retains bounded full UA', $record['schema_version'] === 3 && $record['user_agent'] === $_SERVER['HTTP_USER_AGENT']);
-    p0_assert('v1 event drops count/window metrics present in engine result', isset($decision['signals']['rate_limit']['metrics']['window_10s']) && !isset($record['signals']['rate_limit']['metrics']));
+    p0_assert('guard telemetry independently trusts XFF and records a different client', $record['network']['raw_ip'] === '198.51.100.8' && $storage->read('rate:198.51.100.8') === array());
+    p0_assert('new event uses nested schema 4 and retains bounded full UA', $record['schema_version'] === 4 && $record['headers']['user_agent'] === $_SERVER['HTTP_USER_AGENT']);
+    p0_assert('schema 4 retains bounded rate window metrics from the engine result', isset($decision['signals']['rate_limit']['metrics']['window_10s']) && isset($record['risk']['signals']['rate_limit']['metrics']['window_10s']));
     $serialized = json_encode($record);
     p0_assert('query value, Authorization and cookie plaintext are absent', strpos($serialized, 'phase0-query-secret') === false && strpos($serialized, 'phase0-authorization-secret') === false && strpos($serialized, 'phase0-cookie-secret') === false);
-    p0_assert('v1 event lacks separate peer/chain/response/event-id fields', !isset($record['peer_ip']) && !isset($record['forwarded_chain']) && !isset($record['response']) && !isset($record['event_id']));
+    p0_assert('schema 4 adds peer, response and stable event identity fields', isset($record['network']['peer_ip'], $record['response'], $record['event_id']) && array_key_exists('forwarded_chain', $record['network']));
 
     // Use the real signal and combiner; only the policy mode differs.
     $_SERVER['HTTP_USER_AGENT'] = 'curl/8.0';
@@ -141,7 +141,7 @@ try {
     $logger->log($decision, array('adsense_detected' => true));
     $records = p0_records($base . '/logs');
     $last = $records[count($records) - 1];
-    p0_assert('UA is truncated to 1024 bytes rather than stored without a bound', $last['user_agent'] === str_repeat('A', 1024));
+    p0_assert('UA is truncated to 1024 bytes rather than stored without a bound', $last['headers']['user_agent'] === str_repeat('A', 1024));
     $explicit = new \AdGuard\Guard($guardConfig, $provider);
     $explicit->adsAllowed();
     $before = count(p0_records($base . '/logs'));

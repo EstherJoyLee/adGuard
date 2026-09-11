@@ -119,14 +119,14 @@ $logger->log(
 );
 $schemaFile = $logDir . '/ad-guard-' . gmdate('Y-m-d') . '.jsonl';
 $schemaRecord = is_file($schemaFile) ? json_decode(trim(file_get_contents($schemaFile)), true) : array();
-correlation_assert($failures, 'new log records stable site and route labels', isset($schemaRecord['site_id'], $schemaRecord['route_group']) && $schemaRecord['site_id'] === 'test-site' && $schemaRecord['route_group'] === 'article');
-correlation_assert($failures, 'new log records raw IP beside network HMAC', $schemaRecord['raw_ip'] === '203.0.113.9' && !empty($schemaRecord['network_hmac']) && strpos($schemaRecord['network_hmac'], '/') === false);
-correlation_assert($failures, 'server-owned redirect rule label is recorded', isset($schemaRecord['redirect_rule_id']) && $schemaRecord['redirect_rule_id'] === 'campaign-main');
-correlation_assert($failures, 'schema v3 stores bounded per-slot delivery outcomes',
-    isset($schemaRecord['schema_version'], $schemaRecord['ad_delivery']['manual_units'][0])
-    && $schemaRecord['schema_version'] === 3
-    && $schemaRecord['ad_delivery']['manual_units'][0]['slot'] === '1111111111'
-    && $schemaRecord['ad_delivery']['manual_units'][0]['status'] === 'provided');
+correlation_assert($failures, 'new log records stable project and route labels', isset($schemaRecord['project_id'], $schemaRecord['request']['route_group']) && $schemaRecord['project_id'] === 'test-site' && $schemaRecord['request']['route_group'] === 'article');
+correlation_assert($failures, 'new log records raw IP beside network HMAC', $schemaRecord['network']['raw_ip'] === '203.0.113.9' && !empty($schemaRecord['network']['network_hmac']) && strpos($schemaRecord['network']['network_hmac'], '/') === false);
+correlation_assert($failures, 'server-owned redirect rule label is recorded', isset($schemaRecord['request']['redirect_rule_id']) && $schemaRecord['request']['redirect_rule_id'] === 'campaign-main');
+correlation_assert($failures, 'schema 4 stores bounded per-slot delivery outcomes',
+    isset($schemaRecord['schema_version'], $schemaRecord['advertising']['ad_delivery']['manual_units'][0])
+    && $schemaRecord['schema_version'] === 4
+    && $schemaRecord['advertising']['ad_delivery']['manual_units'][0]['slot'] === '1111111111'
+    && $schemaRecord['advertising']['ad_delivery']['manual_units'][0]['status'] === 'provided');
 @unlink($schemaFile);
 
 $csv = "DATE,PAGE_URL,CLICKS,IMPRESSIONS,PAGE_VIEWS,ESTIMATED_EARNINGS\n"
